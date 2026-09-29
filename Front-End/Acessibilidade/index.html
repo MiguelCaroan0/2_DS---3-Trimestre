@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Inclusivo - Projeto de Acessibilidade</title>
+</head>
+<body>
+    <!-- Ferramentas de Acessibilidade para o usuário-->
+     <div class ="acessibilidade-bar" role="region" arial-label="Barra de Acessibilidade" >
+        <span> Acessibilidade: </span>
+        <button id="btn-contrast" onclick="toggleContrast()">Alto Contraste</button>
+        <button id="btn-increase" onclick="changeFontSize(1)">A+</button>
+        <button id="btn-decrease" onclick="changeFontSize(-1)">A-</button>
+    </div>
+    <header>
+        <nav aria-label="Menu Principal">
+            <ul>
+                <li><a href="#sobre">O Projeto</a></li>
+                <li><a href="#dicas">Boas Práticas</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+       
+
+        <!-- Seção Sobre -->
+        <section id="sobre">
+            <h1>Construindo a Web para Todos</h1>
+            <p>A acessibilidade na web garante que pessoas com deficiência visual, auditiva, motora ou cognitiva possam navegar, entender e interagir com os sites de maneira autônoma.</p>
+        </section>
+        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" 
+                 alt="Grupo de jovens estudantes programando juntos em frente a computadores em uma sala de aula moderna." 
+                 class="card-img">
+
+
+           <!-- Seção de Dicas -->
+        <section id="dicas">
+            <h2>Pilares da Acessibilidade (WCAG)</h2>
+            <ul>
+                <li><strong>Perceptível:</strong> Informações e componentes da interface devem ser apresentados de formas que os usuários possam perceber (ex: textos alternativos em imagens).</li>
+                <li><strong>Operável:</strong> Componentes de interface e navegação devem ser operáveis por teclado e outras tecnologias assistivas.</li>
+                <li><strong>Compreensível:</strong> Informações e a operação da interface devem ser fáceis de entender.</li>
+                 <li><strong>Robusto:</strong> O conteúdo deve ser robusto o suficiente para ser interpretado de forma confiável por uma ampla variedade de leitores de tela.</li>
+            </ul>
+        </section>
+
+         <!-- Seção de Formulário Acessível -->
+        <section id="contato">
+            <h2>Fale Conosco</h2>
+            <form action="#" method="POST">
+                <div>
+                    <label for="nome">Seu Nome completo:</label>
+                    <input type="text" id="nome" name="nome" required aria-required="true">
+                </div>
+    </main>
+
+</body>
+</html>
