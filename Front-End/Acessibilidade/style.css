@@ -1,0 +1,158 @@
+/* Variáveis de Cores (Padrão e Alto Contraste) */
+        :root {
+            --bg-color: #f9f9f9;
+            --text-color: #222222;
+            --primary-color: #0056b3;
+            --primary-hover: #003d82;
+            --card-bg: #ffffff;
+            --border-color: #cccccc;
+            --focus-outline: #ffbf00;
+        }
+
+        body.high-contrast{
+            --bg-color:#f9f9f9;
+            --text-color:#222222;
+            --primary-color:#0056b3;
+            --primary-hover:#e6e600;
+            --card-bg:#121212;
+            --border-color:#ffffff;
+            --focus-outline:#ffff00;
+        }
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    font-size: 1rem;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Barra de Acessibilidade no topo */
+.accessibility-bar {
+    background-color:#333333;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    font-size: 0.9rem;
+}
+
+.accessibility-bar button {
+    background: transparent;
+    border: 1px solid;
+    color: #ffffff;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.accessibility-bar button:hover {
+    background-color: #555555;
+}
+
+
+/* Layout do Cabeçalho e Navegação */
+header {
+    background-color: var(--primary-color);
+    border-bottom: 2px solid var(--border-color);
+    padding: 1.5 rem 1rem;
+    text-align: center;
+}
+
+.logo{
+    color: var(--bg-color);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 1rem; 
+}
+
+nav a {
+    color: var(--bg-color);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px;
+}
+
+nav a:hover {
+    color: var(--bg-color);
+    text-decoration: underline;
+}
+
+  /* Conteúdo Principal */
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+  
+         h1, h2 {
+            color: var(--primary-color);
+        }
+
+         .card-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+
+          /* Formulário Acessível */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        button.submit-btn {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+         button.submit-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: var(--card-bg);
+            border-top: 2px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
