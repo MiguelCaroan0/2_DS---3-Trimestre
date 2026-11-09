@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Acessiblidade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+
+<body>
+<div class="stripe" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<header class="header" id="header">
+  <div class="wrap">
+    <a class="logo" href="#topo" aria-label="Apeperia"><b>a</b>apeperia</a>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="#sobre">Sobre</a><a href="#planos">Planos</a><a href="#blog">Blog</a><a href="#destaques">Destaques</a><a href="#contato">Contato</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+  </div>
+</header>
+
+<main id="topo">
+  <section class="hero">
+    <div class="hero-inner wrap">
+      <h1>
+        Aplicativos na
+        <svg viewBox="0 0 80 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-label="medida"><rect x="1" y="3" width="78" height="16" rx="2"/><path d="M10 3v7M20 3v5M30 3v7M40 3v5M50 3v7M60 3v5M70 3v7"/></svg><br>
+        para
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-label="bugs"><ellipse cx="12" cy="14" rx="5" ry="7"/><circle cx="12" cy="5" r="3"/><path d="M7 12 2 9M7 16l-5 2M17 12l5-3M17 16l5 2" stroke="currentColor" stroke-width="1.5"/></svg>
+        e
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-label="trevo"><circle cx="8" cy="8" r="5"/><circle cx="16" cy="8" r="5"/><circle cx="8" cy="16" r="5"/><circle cx="16" cy="16" r="5"/></svg>
+        empresas
+      </h1>
+      <p>A Apeperia é uma start-up com um jeito inovador de criar e montar aplicativos mobile e web. Funciona assim: você contrata um de nossos três matadores planos e nós criamos, desenvolvemos e mantemos seu app multiplataforma de forma acelerada e, o melhor: se o app não parar o trânsito, devolvemos seu dinheiro direto para o seu bolso!</p>
+      <a class="cta" href="#planos" id="planos">CLIQUE AQUI!</a>
+    </div>
+  </section>
+
+  <section class="features" id="destaques">
+    <ul>
+      <li>
+        <svg class="hex" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><path d="M28 3l22 12.5v25L28 53 6 40.500v-25z"/><text x="28" y="36" text-anchor="middle" font-family="Roboto Slab,serif" font-size="22" font-weight="700" fill="currentColor" stroke="none">$</text></svg>
+        <span><strong>Tempo é dinheiro.</strong> Trabalhamos em ritmo acelerado, atendendo rigorosamente os prazos.</span>
+      </li>
+      <li>
+        <svg class="hex" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M22 6h12M25 6v14L12 44a4 4 0 0 0 3.500 6h25a4 4 0 0 0 3.500-6L31 20V6M17 36h22"/></svg>
+        <span>Focado no pequeno e médio empreendedor, oferecemos serviços de qualidade com preços acessíveis.</span>
+      </li>
+      <li>
+        <svg class="hex" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M28 3l22 12.5v25L28 53 6 40.500v-25z"/><path d="M19 29l6 6 12-13"/></svg>
+        <span>Equipe especializada, com experiência de mercado. Testamos todos os produtos antes do lançamento.</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="about" id="sobre">
+    <div class="wrap">
+      <h2>Sobre</h2>
+      <p class="lead">Criamos aplicativos personalizados de maneira diferente e para todos!</p>
+      <p>Preocupados com o modelo atual em que um aplicativo é criado, entregue e a manutenção é vista como um custo extra para o cliente, decidimos criar um novo modelo de negócio, em que você assina nosso serviço, nós criamos o aplicativo e a manutenção já é inclusa no serviço. Dessa maneira você não se preocupa com atualização, é tudo por nossa conta.</p>
+      <p class="strong">Contamos com uma equipe especializada e exclusiva para projetos incríveis!</p>
+      <div class="platforms" role="img" aria-label="iOS, Android, Windows e BlackBerry">
+        <svg viewBox="0 0 24 24"><path d="M16.400 12.600c0-2.300 1.900-3.400 2-3.500-1.100-1.600-2.800-1.800-3.400-1.800-1.400-.1-2.800.9-3.500.9s-1.800-.8-3-.8c-1.500 0-3 .9-3.800 2.300-1.600 2.800-.4 7 1.200 9.300.8 1.100 1.700 2.400 2.900 2.300 1.200 0 1.600-.7 3-.7s1.800.7 3 .7 2-1.100 2.800-2.200c.9-1.300 1.200-2.500 1.300-2.600-.1 0-2.500-1-2.500-3.900zM14.200 5.700c.6-.8 1.100-1.900.9-3-.9 0-2.100.6-2.700 1.400-.6.700-1.100 1.800-1 2.900 1.100.1 2.200-.5 2.800-1.300z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M6 9h12v9a1.500 1.500 0 0 1-1.500 1.500H15V22a1.200 1.200 0 0 1-2.400 0v-2.500h-1.200V22a1.200 1.200 0 0 1-2.400 0v-2.500H7.500A1.500 1.500 0 0 1 6 18zM3 9.500a1.200 1.200 0 0 1 2.400 0V15A1.200 1.200 0 0 1 3 15zm15.600 0a1.200 1.200 0 0 1 2.400 0V15a1.200 1.200 0 0 1-2.400 0zM6.200 8a6 6 0 0 1 11.600 0zM9.500 5.800a.5.5 0 1 0 0 .1zm5 0a.5.5 0 1 0 0 .1z" fill-rule="evenodd"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M2 4.500l8.500-1.200v8.200H2zM11.500 3.200L22 1.700v9.800H11.500zM2 12.500h8.500v8.200L2 19.500zM11.500 12.500H22v9.800l-10.500-1.500z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M7 3h5c2 0 3 .8 3 2.200 0 1-.6 1.700-1.500 2 1.200.3 2 1.100 2 2.400 0 1.800-1.400 2.800-3.600 2.800H6zm1-.2zM16 3h3.500c1.800 0 2.800.8 2.800 2.200S21.200 7.600 19.500 7.600H15zM5 14h5.500c2 0 3 .9 3 2.400s-1.200 2.600-3.200 2.600H4zM15 14h4.500c1.800 0 2.800.9 2.800 2.300s-1.200 2.700-3 2.700H13.500z"/></svg>
+      </div>
+      <p class="caption">Desenvolvemos aplicativos para todas as plataformas.</p>
+    </div>
+  </section>
+</main>
+
+<aside class="news" id="news" aria-label="Newsletter">
+  <button class="x" type="button" id="newsClose" aria-label="Fechar">×</button>
+  <h3>News sem spam</h3>
+  <p>Assine nossa newsletter para receber notícias técnicas sem spam!</p>
+  <form id="newsForm" novalidate>
+    <input type="email" id="email" placeholder="Digite seu e-mail..." aria-label="E-mail" required>
+    <button class="send" aria-label="Assinar"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></button>
+  </form>
+  <div class="ok" id="newsMsg" role="status"></div>
+</aside>
+
+</body>
+</html>
