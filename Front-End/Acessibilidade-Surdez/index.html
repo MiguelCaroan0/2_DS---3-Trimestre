@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Programação acessível para pessoas surdas — Dev Acess</title>
+<meta name="description" content="Aprenda HTML, CSS e JavaScript com explicações visuais, transcrições e vídeos em Libras.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="index.html" aria-label="Dev Acess, página inicial">Dev<span>Acess</span></a>
+    <nav class="menu" aria-label="Principal">
+      <ul>
+        <li><a href="index.html" aria-current="page">Início</a></li>
+        <li><a href="index.html#trilhas">Trilhas</a></li>
+        <li><a href="referencia-html.html">Guia HTML</a></li>
+        <li><a href="referencia-css.html">Guia CSS</a></li>
+        <li><a href="referencia-js.html">Guia JavaScript</a></li>
+        <li><a href="licao-html.html">Lição de exemplo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="conteudo" tabindex="-1">
+  <section class="hero" aria-labelledby="hero-titulo">
+    <div class="container">
+      <h1 id="hero-titulo">Aprenda a programar em português, com Libras e recursos visuais</h1>
+      <p>Lições de HTML, CSS e JavaScript pensadas para pessoas surdas: textos claros, exemplos que você vê funcionando, transcrição e vídeo em Libras.</p>
+      <div class="botoes">
+        <a class="btn" href="licao-html.html">Começar pela primeira lição</a>
+        <a class="btn btn-sec" href="#trilhas">Ver trilhas de estudo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="trilhas" id="trilhas" aria-labelledby="trilhas-titulo">
+    <div class="container">
+      <h2 id="trilhas-titulo">Trilhas de estudo</h2>
+      <p>Escolha por onde começar. Recomendamos seguir a ordem: HTML, CSS e JavaScript.</p>
+      <ul class="grade">
+        <li class="trilha" style="--cor:#c2410c">
+          <h3><span class="tag">HTML</span> Estrutura da página</h3>
+          <p>Aprenda a organizar títulos, textos, imagens e links.</p>
+          <a class="btn" href="licao-html.html">Estudar HTML<span class="sr-only"> — trilha de HTML</span></a>
+          <a class="btn btn-sec" href="referencia-html.html">Guia de HTML</a>
+        </li>
+        <li class="trilha" style="--cor:#1d4ed8">
+          <h3><span class="tag">CSS</span> Aparência</h3>
+          <p>Controle cores, tamanhos e layout. Guia pronto; lições em breve.</p>
+          <a class="btn" href="referencia-css.html">Guia de CSS</a>
+        </li>
+        <li class="trilha" style="--cor:#a16207">
+          <h3><span class="tag">JavaScript</span> Interação</h3>
+          <p>Faça a página reagir a cliques e teclas. Guia pronto; lições em breve.</p>
+          <a class="btn" href="referencia-js.html">Guia de JavaScript</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p><strong>Dev Acess</strong> — aprender a programar com recursos visuais, legendas e Libras.</p>
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="index.html#trilhas">Trilhas</a></li>
+      <li><a href="#conteudo">Voltar ao topo</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Botão e painel de acessibilidade -->
+<button type="button" class="btn a11y-botao" id="a11y-toggle" aria-expanded="false" aria-controls="a11y-painel">Acessibilidade</button>
+<div class="a11y-painel" id="a11y-painel" role="region" aria-label="Opções de acessibilidade" hidden>
+  <h2>Ajustes de leitura</h2>
+  <button type="button" class="btn btn-sec" id="a11y-mais">Aumentar texto (A+)</button>
+  <button type="button" class="btn btn-sec" id="a11y-menos">Diminuir texto (A−)</button>
+  <button type="button" class="btn btn-sec" id="a11y-contraste" aria-pressed="false">Alto contraste</button>
+  <button type="button" class="btn btn-sec" id="a11y-movimento" aria-pressed="false">Reduzir animações</button>
+</div>
+
+<!-- VLibras: botão flutuante oficial do governo federal -->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>new window.VLibras.Widget("https://vlibras.gov.br/app");</script>
+<script src="script.js"></script>
+</body>
+</html>

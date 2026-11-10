@@ -1,0 +1,32 @@
+/* Dev Acess — estilos extras do guia de referência (carregar depois de style.css) */
+
+/* Guia de referência */
+html { scroll-padding-top: 5rem; }
+.ref-grid { display: grid; gap: 2rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 60rem) {
+  .ref-grid { grid-template-columns: 15rem minmax(0, 1fr); }
+  .topicos { position: sticky; top: 5rem; max-height: calc(100dvh - 6rem); overflow: auto; }
+}
+.topicos { align-self: start; border: 2px solid var(--borda); border-radius: var(--raio); padding: 1rem; }
+.topicos h2 { font-size: 1.1rem; margin: 0 0 .5rem; }
+.topicos ol, .topicos ul { margin: 0 0 1rem; padding-left: 1.25rem; }
+.topico { padding-block: 1.5rem; border-top: 2px solid var(--borda); }
+.topico h2 { margin-top: 0; }
+.topico h3 { font-size: 1rem; margin-bottom: .5rem; }
+.glossario dt { font-weight: 700; margin-top: 1rem; }
+.glossario dd { margin: .25rem 0 0; max-width: 70ch; }
+.tag-breve { color: var(--tinta); opacity: .8; font-size: .9em; }
+.exemplo samp { font-family: var(--mono); background: #eee; color: #000; padding: .1em .4em; border-radius: .3em; }
+:root[data-contraste="alto"] .exemplo samp { background: #222; color: #fff; }
+
+/* Demonstrações visuais */
+.d-destaque { background: #ffd23f; color: #000; padding: .1em .3em; }
+.d-box { margin: 1rem; padding: 1rem; border: 6px solid #2b3bd6; background: #ffd23f; color: #000; width: fit-content; }
+.d-flex { display: flex; gap: .5rem; }
+.d-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
+.d-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr)); gap: .5rem; }
+.d-flex > span, .d-grid > span, .d-auto > span { background: #ffd23f; color: #000; padding: .5rem 1rem; border-radius: .3em; text-align: center; font-weight: 700; }
+.d-sem { display: grid; gap: .4rem; }
+.d-sem div { border: 2px solid currentColor; padding: .4rem .8rem; border-radius: .3em; }
+.d-mover { width: 3rem; height: 3rem; background: #2b3bd6; border-radius: .5rem; animation: d-mover 2s ease-in-out infinite alternate; }
+@keyframes d-mover { to { transform: translateX(10rem); } }

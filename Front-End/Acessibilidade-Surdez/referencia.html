@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia de referência de HTML — Dev Acess</title>
+<meta name="description" content="Referência de HTML em português simples, com exemplos comentados, vídeo em Libras, transcrição e glossário.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="referencia.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="index.html" aria-label="Dev Acess, página inicial">Dev<span>Acess</span></a>
+    <nav class="menu" aria-label="Principal">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#trilhas">Trilhas</a></li>
+        <li><a href="referencia-html.html" aria-current="page">Guia HTML</a></li>
+        <li><a href="referencia-css.html">Guia CSS</a></li>
+        <li><a href="referencia-js.html">Guia JavaScript</a></li>
+        <li><a href="licao-html.html">Lição de exemplo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="conteudo" tabindex="-1">
+  <div class="container conteudo">
+    <nav class="breadcrumb" aria-label="Você está aqui"><ol>
+      <li><a href="index.html">Início</a></li><li aria-current="page">Guia de referência de HTML</li></ol></nav>
+    <h1>Guia de referência de HTML</h1>
+    <p>HTML é a linguagem que dá estrutura às páginas. Aqui estão os assuntos principais, em linguagem simples, com código comentado.</p>
+    <p>Para ver qualquer texto desta página em Libras agora, ative o botão do <strong>VLibras</strong> e selecione o texto.</p>
+    <div class="ref-grid">
+      <nav class="topicos" aria-labelledby="topicos-t">
+        <h2 id="topicos-t">Tópicos</h2>
+        <ol><li><a href="#estrutura">Estrutura da página</a></li><li><a href="#semantica">Semântica</a></li><li><a href="#formularios">Formulários</a></li><li><a href="#imagens">Imagens</a></li><li><a href="#links">Links</a></li><li><a href="#tabelas">Tabelas</a></li><li><a href="#midia">Vídeo e áudio</a></li><li><a href="#acessibilidade">Acessibilidade</a></li></ol>
+        <h2>Nesta página</h2>
+        <ul><li><a href="#libras">Vídeo em Libras</a></li><li><a href="#transcricao">Transcrição</a></li><li><a href="#glossario">Glossário</a></li><li><a href="#relacionadas">Lições relacionadas</a></li></ul>
+      </nav>
+      <div>
+<section class="topico" id="estrutura" aria-labelledby="estrutura-t">
+  <h2 id="estrutura-t">Estrutura da página</h2>
+  <p>Toda página HTML tem a mesma base: o tipo do documento, o idioma, a cabeça (<code>head</code>) com informações e o corpo (<code>body</code>) com o que aparece na tela.</p>
+  <h3>Exemplo de código</h3>
+  <pre tabindex="0" aria-label="Código: Estrutura da página"><code>&lt;!DOCTYPE html&gt;  &lt;!-- avisa o navegador: é HTML5 --&gt;
+&lt;html lang="pt-BR"&gt;  &lt;!-- idioma da página: ajuda leitores de tela --&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;  &lt;!-- permite acentos --&gt;
+  &lt;title&gt;Minha página&lt;/title&gt;  &lt;!-- nome que aparece na aba --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Olá, mundo!&lt;/h1&gt;  &lt;!-- o que aparece na tela --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  <h3>Resultado esperado</h3>
+  <div class="exemplo"><h1 style="margin:0;font-size:1.6rem">Olá, mundo!</h1><p>A aba do navegador mostra o nome “Minha página”.</p></div>
+</section>
+<section class="topico" id="semantica" aria-labelledby="semantica-t">
+  <h2 id="semantica-t">Semântica</h2>
+  <p>Tags semânticas dizem o que cada parte da página é. Isso ajuda leitores de tela, buscadores e quem edita o código.</p>
+  <h3>Exemplo de código</h3>
+  <pre tabindex="0" aria-label="Código: Semântica"><code>&lt;header&gt;Topo: logo e título&lt;/header&gt;
+&lt;nav&gt;Menu de navegação&lt;/nav&gt;
+&lt;main&gt;
+  &lt;article&gt;Conteúdo principal&lt;/article&gt;
+&lt;/main&gt;
+&lt;footer&gt;Rodapé&lt;/footer&gt;</code></pre>
+  <h3>Resultado esperado</h3>
+  <div class="exemplo"><div class="d-sem"><div>header — topo</div><div>nav — menu</div><div>main — article — conteúdo principal</div><div>footer — rodapé</div></div></div>
+</section>
+<section class="topico" id="formularios" aria-labelledby="formularios-t">
+  <h2 id="formularios-t">Formulários</h2>
+  <p>Formulários coletam dados. Todo campo precisa de um <code>label</code> ligado a ele, para que todos saibam o que preencher.</p>
+  <h3>Exemplo de código</h3>
+  <pre tabindex="0" aria-label="Código: Formulários"><code>&lt;form&gt;
+  &lt;label for="nome"&gt;Seu nome&lt;/label&gt;  &lt;!-- "for" liga ao id do campo --&gt;
+  &lt;input id="nome" name="nome" type="text" required&gt;
+  &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+  <h3>Resultado esperado</h3>
+  <div class="exemplo"><form onsubmit="return false"><label for="d-nome">Seu nome</label><br><input id="d-nome" name="nome" type="text" required style="font:inherit;padding:.4rem;margin:.4rem 0"> <button type="submit" class="btn">Enviar</button></form></div>
+</section>
+<section class="topico" id="imagens" aria-labelledby="imagens-t">
+  <h2 id="imagens-t">Imagens</h2>
+  <p>A tag <code>img</code> mostra imagens. O atributo <code>alt</code> descreve a imagem em texto, para quem não a vê.</p>
+  <h3>Exemplo de código</h3>
+  <pre tabindex="0" aria-label="Código: Imagens"><code>&lt;img src="circulo.svg"
+     alt="Círculo azul-escuro sobre fundo amarelo"
+     width="160" height="90"&gt;
+&lt;!-- Imagem só decorativa? Use alt="" --&gt;</code></pre>
+  <h3>Resultado esperado</h3>
+  <div class="exemplo"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='90'%3E%3Crect width='160' height='90' fill='%23ffd23f'/%3E%3Ccircle cx='80' cy='45' r='25' fill='%2316193b'/%3E%3C/svg%3E" alt="Círculo azul-escuro sobre fundo amarelo" width="160" height="90"></div>
+</section>
+<section class="topico" id="links" aria-labelledby="links-t">
+  <h2 id="links-t">Links</h2>
+  <p>O link leva a outra página ou parte da página. O texto do link deve fazer sentido sozinho: evite “clique aqui”.</p>
+  <h3>Exemplo de código</h3>
+  <pre tabindex="0" aria-label="Código: Links"><code>&lt;a href="referencia-css.html"&gt;Ir para o guia de CSS&lt;/a&gt;
+&lt;!-- href="#glossario" leva a um trecho da mesma página --&gt;</code></pre>
+  <h3>Resultado esperado</h3>
+  <div class="exemplo"><p><a href="#glossario">Ir para o glossário desta página</a></p></div>
+</section>
+<section class="topico" id="tabelas" aria-labelledby="tabelas-t">
+  <h2 id="tabelas-t">Tabelas</h2>
+  <p>Use tabelas só para dados. <code>caption</code> dá o título e <code>th</code> marca os cabeçalhos.</p>
+  <h3>Exemplo de código</h3>
+  <pre tabindex="0" aria-label="Código: Tabelas"><code>&lt;table&gt;
+  &lt;caption&gt;Trilhas do Dev Acess&lt;/caption&gt;
+  &lt;tr&gt;&lt;th scope="col"&gt;Trilha&lt;/th&gt;&lt;th scope="col"&gt;Serve para&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;HTML&lt;/td&gt;&lt;td&gt;Estrutura&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;CSS&lt;/td&gt;&lt;td&gt;Aparência&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+  <h3>Resultado esperado</h3>
+  <div class="exemplo"><table style="border-collapse:collapse"><caption style="text-align:left;font-weight:700">Trilhas do Dev Acess</caption><tr><th scope="col" style="border:2px solid;padding:.3rem .8rem">Trilha</th><th scope="col" style="border:2px solid;padding:.3rem .8rem">Serve para</th></tr><tr><td style="border:2px solid;padding:.3rem .8rem">HTML</td><td style="border:2px solid;padding:.3rem .8rem">Estrutura</td></tr><tr><td style="border:2px solid;padding:.3rem .8rem">CSS</td><td style="border:2px solid;padding:.3rem .8rem">Aparência</td></tr></table></div>
+</section>
+<section class="topico" id="midia" aria-labelledby="midia-t">
+  <h2 id="midia-t">Vídeo e áudio</h2>
+  <p>As tags <code>video</code> e <code>audio</code> tocam mídia. Para pessoas surdas, a legenda (<code>track</code>) é essencial.</p>
+  <h3>Exemplo de código</h3>
+  <pre tabindex="0" aria-label="Código: Vídeo e áudio"><code>&lt;video controls&gt;
+  &lt;source src="aula.mp4" type="video/mp4"&gt;
+  &lt;!-- legenda em português --&gt;
+  &lt;track kind="captions" src="aula.vtt" srclang="pt-BR" label="Português" default&gt;
+&lt;/video&gt;</code></pre>
+  <h3>Resultado esperado</h3>
+  <div class="exemplo"><p>Aparece um player com botões de play, volume e tela cheia. Ao ativar a legenda, o texto do que é falado surge sobre o vídeo.</p></div>
+</section>
+<section class="topico" id="acessibilidade" aria-labelledby="acessibilidade-t">
+  <h2 id="acessibilidade-t">Acessibilidade</h2>
+  <p>Acessibilidade é fazer a página funcionar para todos. Para pessoas surdas: legendas, transcrição, Libras e não depender só de som.</p>
+  <h3>Exemplo de código</h3>
+  <pre tabindex="0" aria-label="Código: Acessibilidade"><code>&lt;html lang="pt-BR"&gt;                 &lt;!-- idioma declarado --&gt;
+&lt;a href="#conteudo"&gt;Pular para o conteúdo&lt;/a&gt;  &lt;!-- ajuda no teclado --&gt;
+&lt;img src="grafico.png" alt="Gráfico de vendas em alta"&gt;
+&lt;video controls&gt;...&lt;/video&gt;
+&lt;details&gt;&lt;summary&gt;Transcrição&lt;/summary&gt;...&lt;/details&gt;</code></pre>
+  <h3>Resultado esperado</h3>
+  <div class="exemplo"><ul><li>Todo vídeo tem legenda e transcrição.</li><li>Toda imagem tem texto alternativo.</li><li>Tudo funciona só com o teclado.</li><li>Um alerta nunca usa só som ou só cor.</li></ul></div>
+</section>
+<section class="topico" id="libras" aria-labelledby="libras-t">
+  <h2 id="libras-t">Vídeo em Libras</h2>
+  <!-- Troque o bloco abaixo pelo vídeo real (legenda em português no arquivo .vtt):
+  <video controls preload="metadata" poster="videos/html-poster.jpg">
+    <source src="videos/html-libras.mp4" type="video/mp4">
+    <track kind="captions" src="videos/html.vtt" srclang="pt-BR" label="Português" default>
+  </video> -->
+  <div class="video-libras" role="group" aria-label="Espaço reservado para o vídeo em Libras do guia de HTML">
+    <p><strong>Vídeo em Libras</strong><br>O intérprete aparecerá aqui, com legendas em português.</p>
+  </div>
+</section>
+<section class="topico" id="transcricao" aria-labelledby="transcricao-t">
+  <h2 id="transcricao-t">Transcrição descritiva</h2>
+  <details><summary>Abrir transcrição</summary><p>Estrutura da página: Toda página HTML tem a mesma base: o tipo do documento, o idioma, a cabeça (head) com informações e o corpo (body) com o que aparece na tela. Semântica: Tags semânticas dizem o que cada parte da página é. Isso ajuda leitores de tela, buscadores e quem edita o código. Formulários: Formulários coletam dados. Todo campo precisa de um label ligado a ele, para que todos saibam o que preencher. Imagens: A tag img mostra imagens. O atributo alt descreve a imagem em texto, para quem não a vê. Links: O link leva a outra página ou parte da página. O texto do link deve fazer sentido sozinho: evite “clique aqui”. Tabelas: Use tabelas só para dados. caption dá o título e th marca os cabeçalhos. Vídeo e áudio: As tags video e audio tocam mídia. Para pessoas surdas, a legenda (track) é essencial. Acessibilidade: Acessibilidade é fazer a página funcionar para todos. Para pessoas surdas: legendas, transcrição, Libras e não depender só de som.</p></details>
+</section>
+<section class="topico" id="glossario" aria-labelledby="glossario-t">
+  <h2 id="glossario-t">Glossário</h2>
+  <dl class="glossario"><dt>Tag</dt><dd>Marca escrita entre &lt; e &gt;, como <code>&lt;p&gt;</code>.</dd>
+<dt>Elemento</dt><dd>A tag de abertura, o conteúdo e a tag de fechamento juntos.</dd>
+<dt>Atributo</dt><dd>Informação extra dentro da tag, como <code>alt</code> ou <code>href</code>.</dd>
+<dt>Semântica</dt><dd>O significado de cada tag: “isto é um menu”, “isto é um rodapé”.</dd>
+<dt>Leitor de tela</dt><dd>Programa que lê a página em voz alta ou em Braille. Usado por pessoas cegas.</dd>
+<dt>Texto alternativo</dt><dd>Descrição em texto de uma imagem (atributo <code>alt</code>).</dd>
+<dt>Legenda</dt><dd>Texto sincronizado com o vídeo, que mostra o que é falado e os sons importantes.</dd>
+<dt>Transcrição</dt><dd>Versão completa em texto de um vídeo ou áudio.</dd></dl>
+</section>
+<section class="topico" id="relacionadas" aria-labelledby="relacionadas-t">
+  <h2 id="relacionadas-t">Lições relacionadas</h2>
+  <ul><li><a href="licao-html.html">Títulos e parágrafos em HTML</a></li>
+<li>Listas em HTML <span class="tag-breve">(em breve)</span></li>
+<li>Formulários acessíveis <span class="tag-breve">(em breve)</span></li>
+<li><a href="referencia-css.html">Guia de CSS</a></li>
+<li><a href="referencia-js.html">Guia de JavaScript</a></li></ul>
+</section>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p><strong>Dev Acess</strong> — aprender a programar com recursos visuais, legendas e Libras.</p>
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="index.html#trilhas">Trilhas</a></li>
+      <li><a href="#conteudo">Voltar ao topo</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Botão e painel de acessibilidade -->
+<button type="button" class="btn a11y-botao" id="a11y-toggle" aria-expanded="false" aria-controls="a11y-painel">Acessibilidade</button>
+<div class="a11y-painel" id="a11y-painel" role="region" aria-label="Opções de acessibilidade" hidden>
+  <h2>Ajustes de leitura</h2>
+  <button type="button" class="btn btn-sec" id="a11y-mais">Aumentar texto (A+)</button>
+  <button type="button" class="btn btn-sec" id="a11y-menos">Diminuir texto (A−)</button>
+  <button type="button" class="btn btn-sec" id="a11y-contraste" aria-pressed="false">Alto contraste</button>
+  <button type="button" class="btn btn-sec" id="a11y-movimento" aria-pressed="false">Reduzir animações</button>
+</div>
+
+<!-- VLibras: botão flutuante oficial do governo federal -->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>new window.VLibras.Widget("https://vlibras.gov.br/app");</script>
+<script src="script.js"></script>
+</body>
+</html>
