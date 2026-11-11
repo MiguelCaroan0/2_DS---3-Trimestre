@@ -1,16 +1,16 @@
 /* Dev Acess — CSS base acessível */
 :root {
     --fonte-base: 1.125rem;   /* 18px: ajustável pelo painel */
-    --tinta: #16193b; 
-    --papel: #fbfbfd;
-    --suave: #eceefb;
-    --borda: #c9cdea;
+    --tinta: #eef2f6;
+    --papel: #111820;
+    --suave: #1b2630;
+    --borda: #465564;
     --destaque: #ffd23f;
-    --link: #2b3bd6;
-    --link-visitado: #6a2bb5;
-    --codigo-bg: #16193b; 
+    --link: #78d7ff;
+    --link-visitado: #d3a6ff;
+    --codigo-bg: #090e13;
     --codigo-fg: #f4f5ff;
-    --foco: #b35900;
+    --foco: #ffd23f;
     --raio: .5rem;
     --sans: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --mono: ui-monospace, "Cascadia Code", Consolas, monospace;
@@ -129,8 +129,8 @@
   
   /* Cabeçalho e menu */
   .site-header {
-    background: var(--tinta);
-    color: var(--papel);
+    background: #090e13;
+    color: #f4f6f8;
     position: sticky;
     top: 0;
     z-index: 50;
@@ -242,8 +242,8 @@
   }
   
   .btn:hover {
-    background: var(--link);
-    border-color: var(--link);
+    background: #59636e;
+    border-color: #59636e;
     color: #fff;
   }
   
@@ -361,8 +361,8 @@
     border: 2px dashed var(--borda);
     border-radius: var(--raio);
     padding: 1.25rem;
-    background: #fff;
-    color: #000;
+    background: var(--suave);
+    color: var(--tinta);
   }
   
   :root[data-contraste="alto"] .exemplo {
@@ -421,31 +421,27 @@
   
   /* Botão e painel de acessibilidade */
   .a11y-botao {
-    position: fixed;
-    left: 1rem;
-    bottom: 1rem;
-    z-index: 60;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .4);
     background: var(--destaque);
     color: #000;
-    border-color: #000;
+    border-color: var(--destaque);
+    white-space: nowrap;
   }
   
   .a11y-botao:hover {
-    background: #fff;
-    color: #000;
-    border-color: #000;
+    background: #59636e;
+    color: #fff;
+    border-color: #59636e;
   }
   
   .a11y-painel {
     position: fixed;
-    left: 1rem;
-    bottom: 4.5rem;
+    top: 5rem;
+    right: max(1rem, calc((100vw - 68rem) / 2));
     z-index: 60;
     width: min(20rem, calc(100% - 2rem));
     background: var(--papel);
     color: var(--tinta);
-    border: 3px solid var(--tinta);
+    border: 2px solid var(--borda);
     border-radius: var(--raio);
     padding: 1rem;
     box-shadow: 0 6px 20px rgba(0, 0, 0, .35);
@@ -470,6 +466,12 @@
     background: var(--destaque);
     color: #000;
     border-color: #000;
+  }
+
+  .a11y-painel .btn[aria-pressed="true"]:hover {
+    background: #59636e;
+    color: #fff;
+    border-color: #59636e;
   }
   
   /* Reduzir movimento */

@@ -1,244 +1,526 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Guia de referência de JavaScript — Dev Acess</title>
-<meta name="description" content="Referência de JavaScript em português simples, com exemplos comentados, vídeo em Libras, transcrição e glossário.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="referencia.css">
-</head>
-<body>
-<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-<header class="site-header">
-  <div class="container">
-    <a class="logo" href="index.html" aria-label="Dev Acess, página inicial">Dev<span>Acess</span></a>
-    <nav class="menu" aria-label="Principal">
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="index.html#trilhas">Trilhas</a></li>
-        <li><a href="referencia-html.html">Guia HTML</a></li>
-        <li><a href="referencia-css.html">Guia CSS</a></li>
-        <li><a href="referencia-js.html" aria-current="page">Guia JavaScript</a></li>
-        <li><a href="licao-html.html">Lição de exemplo</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-<main id="conteudo" tabindex="-1">
-  <div class="container conteudo">
-    <nav class="breadcrumb" aria-label="Você está aqui"><ol>
-      <li><a href="index.html">Início</a></li><li aria-current="page">Guia de referência de JavaScript</li></ol></nav>
-    <h1>Guia de referência de JavaScript</h1>
-    <p>JavaScript faz a página reagir: calcula, escuta cliques e busca dados. Os assuntos abaixo seguem uma ordem boa de estudo.</p>
-    <p>Para ver qualquer texto desta página em Libras agora, ative o botão do <strong>VLibras</strong> e selecione o texto.</p>
-    <div class="ref-grid">
-      <nav class="topicos" aria-labelledby="topicos-t">
-        <h2 id="topicos-t">Tópicos</h2>
-        <ol><li><a href="#variaveis">Variáveis</a></li><li><a href="#tipos">Tipos de dados</a></li><li><a href="#funcoes">Funções</a></li><li><a href="#condicionais">Condicionais</a></li><li><a href="#loops">Loops</a></li><li><a href="#arrays">Arrays</a></li><li><a href="#objetos">Objetos</a></li><li><a href="#dom">DOM</a></li><li><a href="#eventos">Eventos</a></li><li><a href="#fetch">Fetch (buscar dados)</a></li><li><a href="#erros">Tratamento de erros</a></li></ol>
-        <h2>Nesta página</h2>
-        <ul><li><a href="#libras">Vídeo em Libras</a></li><li><a href="#transcricao">Transcrição</a></li><li><a href="#glossario">Glossário</a></li><li><a href="#relacionadas">Lições relacionadas</a></li></ul>
-      </nav>
-      <div>
-<section class="topico" id="variaveis" aria-labelledby="variaveis-t">
-  <h2 id="variaveis-t">Variáveis</h2>
-  <p>Variável é uma “caixa” com nome que guarda um valor. Use <code>const</code> para valores fixos e <code>let</code> para valores que mudam.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Variáveis"><code>const nome = "Ana"; // const: o valor não muda
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Guia de referência de JavaScript — Dev Acess</title>
+    <meta
+      name="description"
+      content="Referência de JavaScript em português simples, com exemplos comentados, vídeo em Libras, transcrição e glossário."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="referencia.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header">
+      <div class="container">
+        <a class="logo" href="index.html" aria-label="Dev Acess, página inicial"
+          >Dev<span>Acess</span></a
+        >
+        <nav class="menu" aria-label="Principal">
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="referencia-html.html">Guia HTML</a></li>
+            <li><a href="referencia-css.html">Guia CSS</a></li>
+            <li>
+              <a href="referencia-js.html" aria-current="page"
+                >Guia JavaScript</a
+              >
+            </li>
+          </ul>
+        </nav>
+        <button
+          type="button"
+          class="btn a11y-botao"
+          id="a11y-toggle"
+          aria-expanded="false"
+          aria-controls="a11y-painel"
+        >
+          Acessibilidade
+        </button>
+      </div>
+    </header>
+    <main id="conteudo" tabindex="-1">
+      <div class="container conteudo">
+        <nav class="breadcrumb" aria-label="Você está aqui">
+          <ol>
+            <li><a href="index.html">Início</a></li>
+            <li aria-current="page">Guia de referência de JavaScript</li>
+          </ol>
+        </nav>
+        <h1>Guia de referência de JavaScript</h1>
+        <p>
+          JavaScript faz a página reagir: calcula, escuta cliques e busca dados.
+          Os assuntos abaixo seguem uma ordem boa de estudo.
+        </p>
+        <p>
+          Para ver qualquer texto desta página em Libras agora, ative o botão do
+          <strong>VLibras</strong> e selecione o texto.
+        </p>
+        <div class="ref-grid">
+          <nav class="topicos" aria-labelledby="topicos-t">
+            <h2 id="topicos-t">Tópicos</h2>
+            <ol>
+              <li><a href="#variaveis">Variáveis</a></li>
+              <li><a href="#tipos">Tipos de dados</a></li>
+              <li><a href="#funcoes">Funções</a></li>
+              <li><a href="#condicionais">Condicionais</a></li>
+              <li><a href="#loops">Loops</a></li>
+              <li><a href="#arrays">Arrays</a></li>
+              <li><a href="#objetos">Objetos</a></li>
+              <li><a href="#dom">DOM</a></li>
+              <li><a href="#eventos">Eventos</a></li>
+              <li><a href="#fetch">Fetch (buscar dados)</a></li>
+              <li><a href="#erros">Tratamento de erros</a></li>
+            </ol>
+            <h2>Nesta página</h2>
+            <ul>
+              <li><a href="#libras">Vídeo em Libras</a></li>
+              <li><a href="#transcricao">Transcrição</a></li>
+              <li><a href="#glossario">Glossário</a></li>
+              <li><a href="#relacionadas">Lições relacionadas</a></li>
+            </ul>
+          </nav>
+          <div>
+            <section
+              class="topico"
+              id="variaveis"
+              aria-labelledby="variaveis-t"
+            >
+              <h2 id="variaveis-t">Variáveis</h2>
+              <p>
+                Variável é uma “caixa” com nome que guarda um valor. Use
+                <code>const</code> para valores fixos e <code>let</code> para
+                valores que mudam.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre
+                tabindex="0"
+                aria-label="Código: Variáveis"
+              ><code>const nome = "Ana"; // const: o valor não muda
 let idade = 20;     // let: o valor pode mudar
 idade = 21;         // mudamos o valor
 console.log(nome, idade); // mostra no console</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><p>No console aparece: <samp>Ana 21</samp></p></div>
-</section>
-<section class="topico" id="tipos" aria-labelledby="tipos-t">
-  <h2 id="tipos-t">Tipos de dados</h2>
-  <p>Os valores têm tipos: texto (string), número, verdadeiro/falso (boolean), vazio (<code>null</code>) e não definido (<code>undefined</code>).</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Tipos de dados"><code>typeof "oi"   // "string"  → texto
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <p>No console aparece: <samp>Ana 21</samp></p>
+              </div>
+            </section>
+            <section class="topico" id="tipos" aria-labelledby="tipos-t">
+              <h2 id="tipos-t">Tipos de dados</h2>
+              <p>
+                Os valores têm tipos: texto (string), número, verdadeiro/falso
+                (boolean), vazio (<code>null</code>) e não definido
+                (<code>undefined</code>).
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre
+                tabindex="0"
+                aria-label="Código: Tipos de dados"
+              ><code>typeof "oi"   // "string"  → texto
 typeof 42     // "number"  → número
 typeof true   // "boolean" → verdadeiro ou falso
 typeof undefined // "undefined" → sem valor ainda</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><p>O console mostra o tipo de cada valor, como <samp>number</samp> para 42.</p></div>
-</section>
-<section class="topico" id="funcoes" aria-labelledby="funcoes-t">
-  <h2 id="funcoes-t">Funções</h2>
-  <p>Função é um bloco de código com nome que você pode usar várias vezes.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Funções"><code>function dobro(numero) { // numero é o parâmetro
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <p>
+                  O console mostra o tipo de cada valor, como
+                  <samp>number</samp> para 42.
+                </p>
+              </div>
+            </section>
+            <section class="topico" id="funcoes" aria-labelledby="funcoes-t">
+              <h2 id="funcoes-t">Funções</h2>
+              <p>
+                Função é um bloco de código com nome que você pode usar várias
+                vezes.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre
+                tabindex="0"
+                aria-label="Código: Funções"
+              ><code>function dobro(numero) { // numero é o parâmetro
   return numero * 2;     // devolve o resultado
 }
 console.log(dobro(5));   // chama a função</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><p>No console aparece: <samp>10</samp></p></div>
-</section>
-<section class="topico" id="condicionais" aria-labelledby="condicionais-t">
-  <h2 id="condicionais-t">Condicionais</h2>
-  <p>Condicionais fazem o código escolher um caminho: <em>se</em> algo é verdade, faz uma coisa; <em>senão</em>, faz outra.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Condicionais"><code>const nota = 7;
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <p>No console aparece: <samp>10</samp></p>
+              </div>
+            </section>
+            <section
+              class="topico"
+              id="condicionais"
+              aria-labelledby="condicionais-t"
+            >
+              <h2 id="condicionais-t">Condicionais</h2>
+              <p>
+                Condicionais fazem o código escolher um caminho:
+                <em>se</em> algo é verdade, faz uma coisa; <em>senão</em>, faz
+                outra.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre
+                tabindex="0"
+                aria-label="Código: Condicionais"
+              ><code>const nota = 7;
 if (nota &gt;= 6) {
   console.log("Aprovada");   // roda se for verdade
 } else {
   console.log("Em recuperação"); // roda se for falso
 }</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><p>No console aparece: <samp>Aprovada</samp></p></div>
-</section>
-<section class="topico" id="loops" aria-labelledby="loops-t">
-  <h2 id="loops-t">Loops</h2>
-  <p>Loops repetem um trecho de código sem você escrever várias vezes.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Loops"><code>for (let i = 1; i &lt;= 3; i++) { // começa em 1, vai até 3
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <p>No console aparece: <samp>Aprovada</samp></p>
+              </div>
+            </section>
+            <section class="topico" id="loops" aria-labelledby="loops-t">
+              <h2 id="loops-t">Loops</h2>
+              <p>
+                Loops repetem um trecho de código sem você escrever várias
+                vezes.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre
+                tabindex="0"
+                aria-label="Código: Loops"
+              ><code>for (let i = 1; i &lt;= 3; i++) { // começa em 1, vai até 3
   console.log("Volta " + i);
 }</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><p>No console aparece: <samp>Volta 1</samp>, <samp>Volta 2</samp> e <samp>Volta 3</samp>.</p></div>
-</section>
-<section class="topico" id="arrays" aria-labelledby="arrays-t">
-  <h2 id="arrays-t">Arrays</h2>
-  <p>Array é uma lista ordenada de valores. A contagem de posições começa em zero.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Arrays"><code>const frutas = ["maçã", "uva"];
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <p>
+                  No console aparece: <samp>Volta 1</samp>,
+                  <samp>Volta 2</samp> e <samp>Volta 3</samp>.
+                </p>
+              </div>
+            </section>
+            <section class="topico" id="arrays" aria-labelledby="arrays-t">
+              <h2 id="arrays-t">Arrays</h2>
+              <p>
+                Array é uma lista ordenada de valores. A contagem de posições
+                começa em zero.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre
+                tabindex="0"
+                aria-label="Código: Arrays"
+              ><code>const frutas = ["maçã", "uva"];
 frutas.push("pera");            // adiciona no fim
 console.log(frutas[0]);         // primeiro item: "maçã"
 const grandes = frutas.filter(f =&gt; f.length &gt; 3); // filtra</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><p>No console aparece: <samp>maçã</samp>. A lista <code>grandes</code> fica com <samp>["maçã", "pera"]</samp>.</p></div>
-</section>
-<section class="topico" id="objetos" aria-labelledby="objetos-t">
-  <h2 id="objetos-t">Objetos</h2>
-  <p>Objeto agrupa informações relacionadas em pares de nome e valor.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Objetos"><code>const aluno = {
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <p>
+                  No console aparece: <samp>maçã</samp>. A lista
+                  <code>grandes</code> fica com <samp>["maçã", "pera"]</samp>.
+                </p>
+              </div>
+            </section>
+            <section class="topico" id="objetos" aria-labelledby="objetos-t">
+              <h2 id="objetos-t">Objetos</h2>
+              <p>
+                Objeto agrupa informações relacionadas em pares de nome e valor.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre
+                tabindex="0"
+                aria-label="Código: Objetos"
+              ><code>const aluno = {
   nome: "Ana",
   curso: "HTML"
 };
 console.log(aluno.nome); // acessa com ponto
 aluno.curso = "CSS";     // muda o valor</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><p>No console aparece: <samp>Ana</samp></p></div>
-</section>
-<section class="topico" id="dom" aria-labelledby="dom-t">
-  <h2 id="dom-t">DOM</h2>
-  <p>O DOM é a página vista pelo JavaScript. Com ele você encontra elementos e muda seu conteúdo.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: DOM"><code>const texto = document.querySelector("#demo-dom-texto"); // encontra
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <p>No console aparece: <samp>Ana</samp></p>
+              </div>
+            </section>
+            <section class="topico" id="dom" aria-labelledby="dom-t">
+              <h2 id="dom-t">DOM</h2>
+              <p>
+                O DOM é a página vista pelo JavaScript. Com ele você encontra
+                elementos e muda seu conteúdo.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre
+                tabindex="0"
+                aria-label="Código: DOM"
+              ><code>const texto = document.querySelector("#demo-dom-texto"); // encontra
 texto.textContent = "Texto mudado pelo JavaScript!";     // muda</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><p id="demo-dom-texto" aria-live="polite">Texto original.</p><button type="button" class="btn" id="demo-dom-btn">Mudar o texto</button></div>
-</section>
-<section class="topico" id="eventos" aria-labelledby="eventos-t">
-  <h2 id="eventos-t">Eventos</h2>
-  <p>Evento é algo que acontece na página: um clique, uma tecla, um envio. O código “escuta” o evento e reage.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Eventos"><code>const botao = document.querySelector("#demo-cont-btn");
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <p id="demo-dom-texto" aria-live="polite">Texto original.</p>
+                <button type="button" class="btn" id="demo-dom-btn">
+                  Mudar o texto
+                </button>
+              </div>
+            </section>
+            <section class="topico" id="eventos" aria-labelledby="eventos-t">
+              <h2 id="eventos-t">Eventos</h2>
+              <p>
+                Evento é algo que acontece na página: um clique, uma tecla, um
+                envio. O código “escuta” o evento e reage.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre
+                tabindex="0"
+                aria-label="Código: Eventos"
+              ><code>const botao = document.querySelector("#demo-cont-btn");
 let cliques = 0;
 botao.addEventListener("click", () =&gt; { // escuta o clique
   cliques++;
   console.log("Cliques: " + cliques);
 });</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><button type="button" class="btn" id="demo-cont-btn">Clique aqui</button> <p id="demo-cont-saida" aria-live="polite">Nenhum clique ainda.</p></div>
-</section>
-<section class="topico" id="fetch" aria-labelledby="fetch-t">
-  <h2 id="fetch-t">Fetch (buscar dados)</h2>
-  <p><code>fetch</code> pede dados a outro site (uma API). Como demora, usamos <code>async</code> e <code>await</code> para esperar a resposta.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Fetch (buscar dados)"><code>async function buscarCep(cep) {
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <button type="button" class="btn" id="demo-cont-btn">
+                  Clique aqui
+                </button>
+                <p id="demo-cont-saida" aria-live="polite">
+                  Nenhum clique ainda.
+                </p>
+              </div>
+            </section>
+            <section class="topico" id="fetch" aria-labelledby="fetch-t">
+              <h2 id="fetch-t">Fetch (buscar dados)</h2>
+              <p>
+                <code>fetch</code> pede dados a outro site (uma API). Como
+                demora, usamos <code>async</code> e <code>await</code> para
+                esperar a resposta.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre
+                tabindex="0"
+                aria-label="Código: Fetch (buscar dados)"
+              ><code>async function buscarCep(cep) {
   const resposta = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
   const dados = await resposta.json(); // vira objeto
   console.log(dados.logradouro);
 }
 buscarCep("01001000");</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><label for="demo-cep">CEP (8 números)</label><br><input id="demo-cep" inputmode="numeric" value="01001000" style="font:inherit;padding:.4rem;margin:.4rem 0"> <button type="button" class="btn" id="demo-fetch-btn">Buscar endereço</button><p id="demo-fetch-saida" aria-live="polite"></p></div>
-</section>
-<section class="topico" id="erros" aria-labelledby="erros-t">
-  <h2 id="erros-t">Tratamento de erros</h2>
-  <p>Erros acontecem. <code>try/catch</code> tenta rodar o código e, se falhar, mostra uma mensagem clara em vez de quebrar a página.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Tratamento de erros"><code>try {
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <label for="demo-cep">CEP (8 números)</label><br /><input
+                  id="demo-cep"
+                  inputmode="numeric"
+                  value="01001000"
+                  style="font: inherit; padding: 0.4rem; margin: 0.4rem 0"
+                />
+                <button type="button" class="btn" id="demo-fetch-btn">
+                  Buscar endereço
+                </button>
+                <p id="demo-fetch-saida" aria-live="polite"></p>
+              </div>
+            </section>
+            <section class="topico" id="erros" aria-labelledby="erros-t">
+              <h2 id="erros-t">Tratamento de erros</h2>
+              <p>
+                Erros acontecem. <code>try/catch</code> tenta rodar o código e,
+                se falhar, mostra uma mensagem clara em vez de quebrar a página.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre
+                tabindex="0"
+                aria-label="Código: Tratamento de erros"
+              ><code>try {
   JSON.parse("{texto sem aspas}"); // isto vai falhar
 } catch (erro) {
   console.log("Erro capturado: " + erro.message);
 }</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><button type="button" class="btn" id="demo-erro-btn">Provocar um erro</button><p id="demo-erro-saida" aria-live="polite"></p></div>
-</section>
-<section class="topico" id="libras" aria-labelledby="libras-t">
-  <h2 id="libras-t">Vídeo em Libras</h2>
-  <!-- Troque o bloco abaixo pelo vídeo real (legenda em português no arquivo .vtt):
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <button type="button" class="btn" id="demo-erro-btn">
+                  Provocar um erro
+                </button>
+                <p id="demo-erro-saida" aria-live="polite"></p>
+              </div>
+            </section>
+            <section class="topico" id="libras" aria-labelledby="libras-t">
+              <h2 id="libras-t">Vídeo em Libras</h2>
+              <!-- Troque o bloco abaixo pelo vídeo real (legenda em português no arquivo .vtt):
   <video controls preload="metadata" poster="videos/js-poster.jpg">
     <source src="videos/js-libras.mp4" type="video/mp4">
     <track kind="captions" src="videos/js.vtt" srclang="pt-BR" label="Português" default>
   </video> -->
-  <div class="video-libras" role="group" aria-label="Espaço reservado para o vídeo em Libras do guia de JavaScript">
-    <p><strong>Vídeo em Libras</strong><br>O intérprete aparecerá aqui, com legendas em português.</p>
-  </div>
-</section>
-<section class="topico" id="transcricao" aria-labelledby="transcricao-t">
-  <h2 id="transcricao-t">Transcrição descritiva</h2>
-  <details><summary>Abrir transcrição</summary><p>Variáveis: Variável é uma “caixa” com nome que guarda um valor. Use const para valores fixos e let para valores que mudam. Tipos de dados: Os valores têm tipos: texto (string), número, verdadeiro/falso (boolean), vazio (null) e não definido (undefined). Funções: Função é um bloco de código com nome que você pode usar várias vezes. Condicionais: Condicionais fazem o código escolher um caminho: se algo é verdade, faz uma coisa; senão, faz outra. Loops: Loops repetem um trecho de código sem você escrever várias vezes. Arrays: Array é uma lista ordenada de valores. A contagem de posições começa em zero. Objetos: Objeto agrupa informações relacionadas em pares de nome e valor. DOM: O DOM é a página vista pelo JavaScript. Com ele você encontra elementos e muda seu conteúdo. Eventos: Evento é algo que acontece na página: um clique, uma tecla, um envio. O código “escuta” o evento e reage. Fetch (buscar dados): fetch pede dados a outro site (uma API). Como demora, usamos async e await para esperar a resposta. Tratamento de erros: Erros acontecem. try/catch tenta rodar o código e, se falhar, mostra uma mensagem clara em vez de quebrar a página.</p></details>
-</section>
-<section class="topico" id="glossario" aria-labelledby="glossario-t">
-  <h2 id="glossario-t">Glossário</h2>
-  <dl class="glossario"><dt>Variável</dt><dd>Nome que guarda um valor na memória.</dd>
-<dt>Função</dt><dd>Bloco de código reutilizável, que pode receber valores e devolver um resultado.</dd>
-<dt>Array</dt><dd>Lista ordenada de valores.</dd>
-<dt>Objeto</dt><dd>Grupo de informações com nome e valor.</dd>
-<dt>DOM</dt><dd>Representação da página que o JavaScript consegue ler e alterar.</dd>
-<dt>Evento</dt><dd>Algo que acontece na página, como clicar ou digitar.</dd>
-<dt>API</dt><dd>Serviço que entrega dados para outros programas.</dd>
-<dt>Assíncrono</dt><dd>Que acontece em segundo plano, sem travar a página (como o <code>fetch</code>).</dd>
-<dt>Console</dt><dd>Área do navegador onde aparecem mensagens e erros do código.</dd></dl>
-</section>
-<section class="topico" id="relacionadas" aria-labelledby="relacionadas-t">
-  <h2 id="relacionadas-t">Lições relacionadas</h2>
-  <ul><li>Primeiros passos com variáveis <span class="tag-breve">(em breve)</span></li>
-<li>Mudando a página com o DOM <span class="tag-breve">(em breve)</span></li>
-<li>Buscando dados com fetch <span class="tag-breve">(em breve)</span></li>
-<li><a href="licao-html.html">Títulos e parágrafos em HTML (base para o DOM)</a></li>
-<li><a href="referencia-html.html">Guia de HTML</a></li>
-<li><a href="referencia-css.html">Guia de CSS</a></li></ul>
-</section>
+              <div
+                class="video-libras"
+                role="group"
+                aria-label="Espaço reservado para o vídeo em Libras do guia de JavaScript"
+              >
+                <p>
+                  <strong>Vídeo em Libras</strong><br />O intérprete aparecerá
+                  aqui, com legendas em português.
+                </p>
+              </div>
+            </section>
+            <section
+              class="topico"
+              id="transcricao"
+              aria-labelledby="transcricao-t"
+            >
+              <h2 id="transcricao-t">Transcrição descritiva</h2>
+              <details>
+                <summary>Abrir transcrição</summary>
+                <p>
+                  Variáveis: Variável é uma “caixa” com nome que guarda um
+                  valor. Use const para valores fixos e let para valores que
+                  mudam. Tipos de dados: Os valores têm tipos: texto (string),
+                  número, verdadeiro/falso (boolean), vazio (null) e não
+                  definido (undefined). Funções: Função é um bloco de código com
+                  nome que você pode usar várias vezes. Condicionais:
+                  Condicionais fazem o código escolher um caminho: se algo é
+                  verdade, faz uma coisa; senão, faz outra. Loops: Loops repetem
+                  um trecho de código sem você escrever várias vezes. Arrays:
+                  Array é uma lista ordenada de valores. A contagem de posições
+                  começa em zero. Objetos: Objeto agrupa informações
+                  relacionadas em pares de nome e valor. DOM: O DOM é a página
+                  vista pelo JavaScript. Com ele você encontra elementos e muda
+                  seu conteúdo. Eventos: Evento é algo que acontece na página:
+                  um clique, uma tecla, um envio. O código “escuta” o evento e
+                  reage. Fetch (buscar dados): fetch pede dados a outro site
+                  (uma API). Como demora, usamos async e await para esperar a
+                  resposta. Tratamento de erros: Erros acontecem. try/catch
+                  tenta rodar o código e, se falhar, mostra uma mensagem clara
+                  em vez de quebrar a página.
+                </p>
+              </details>
+            </section>
+            <section
+              class="topico"
+              id="glossario"
+              aria-labelledby="glossario-t"
+            >
+              <h2 id="glossario-t">Glossário</h2>
+              <dl class="glossario">
+                <dt>Variável</dt>
+                <dd>Nome que guarda um valor na memória.</dd>
+                <dt>Função</dt>
+                <dd>
+                  Bloco de código reutilizável, que pode receber valores e
+                  devolver um resultado.
+                </dd>
+                <dt>Array</dt>
+                <dd>Lista ordenada de valores.</dd>
+                <dt>Objeto</dt>
+                <dd>Grupo de informações com nome e valor.</dd>
+                <dt>DOM</dt>
+                <dd>
+                  Representação da página que o JavaScript consegue ler e
+                  alterar.
+                </dd>
+                <dt>Evento</dt>
+                <dd>Algo que acontece na página, como clicar ou digitar.</dd>
+                <dt>API</dt>
+                <dd>Serviço que entrega dados para outros programas.</dd>
+                <dt>Assíncrono</dt>
+                <dd>
+                  Que acontece em segundo plano, sem travar a página (como o
+                  <code>fetch</code>).
+                </dd>
+                <dt>Console</dt>
+                <dd>
+                  Área do navegador onde aparecem mensagens e erros do código.
+                </dd>
+              </dl>
+            </section>
+            <section
+              class="topico"
+              id="relacionadas"
+              aria-labelledby="relacionadas-t"
+            >
+              <h2 id="relacionadas-t">Lições relacionadas</h2>
+              <ul>
+                <li>
+                  Primeiros passos com variáveis
+                  <span class="tag-breve">(em breve)</span>
+                </li>
+                <li>
+                  Mudando a página com o DOM
+                  <span class="tag-breve">(em breve)</span>
+                </li>
+                <li>
+                  Buscando dados com fetch
+                  <span class="tag-breve">(em breve)</span>
+                </li>
+                <li>
+                  <a href="licao-html.html"
+                    >Títulos e parágrafos em HTML (base para o DOM)</a
+                  >
+                </li>
+                <li><a href="referencia-html.html">Guia de HTML</a></li>
+                <li><a href="referencia-css.html">Guia de CSS</a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
       </div>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          <strong>Dev Acess</strong> — aprender a programar com recursos
+          visuais, legendas e Libras.
+        </p>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#trilhas">Trilhas</a></li>
+          <li><a href="#conteudo">Voltar ao topo</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Painel de acessibilidade -->
+    <div
+      class="a11y-painel"
+      id="a11y-painel"
+      role="region"
+      aria-label="Opções de acessibilidade"
+      hidden
+    >
+      <h2>Ajustes de leitura</h2>
+      <button type="button" class="btn btn-sec" id="a11y-mais">
+        Aumentar texto (A+)
+      </button>
+      <button type="button" class="btn btn-sec" id="a11y-menos">
+        Diminuir texto (A−)
+      </button>
+      <button
+        type="button"
+        class="btn btn-sec"
+        id="a11y-contraste"
+        aria-pressed="false"
+      >
+        Alto contraste
+      </button>
+      <button
+        type="button"
+        class="btn btn-sec"
+        id="a11y-movimento"
+        aria-pressed="false"
+      >
+        Reduzir animações
+      </button>
     </div>
-  </div>
-</main>
-<footer class="site-footer">
-  <div class="container">
-    <p><strong>Dev Acess</strong> — aprender a programar com recursos visuais, legendas e Libras.</p>
-    <ul>
-      <li><a href="index.html">Início</a></li>
-      <li><a href="index.html#trilhas">Trilhas</a></li>
-      <li><a href="#conteudo">Voltar ao topo</a></li>
-    </ul>
-  </div>
-</footer>
 
-<!-- Botão e painel de acessibilidade -->
-<button type="button" class="btn a11y-botao" id="a11y-toggle" aria-expanded="false" aria-controls="a11y-painel">Acessibilidade</button>
-<div class="a11y-painel" id="a11y-painel" role="region" aria-label="Opções de acessibilidade" hidden>
-  <h2>Ajustes de leitura</h2>
-  <button type="button" class="btn btn-sec" id="a11y-mais">Aumentar texto (A+)</button>
-  <button type="button" class="btn btn-sec" id="a11y-menos">Diminuir texto (A−)</button>
-  <button type="button" class="btn btn-sec" id="a11y-contraste" aria-pressed="false">Alto contraste</button>
-  <button type="button" class="btn btn-sec" id="a11y-movimento" aria-pressed="false">Reduzir animações</button>
-</div>
-
-<!-- VLibras: botão flutuante oficial do governo federal -->
-<div vw class="enabled">
-  <div vw-access-button class="active"></div>
-  <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
-</div>
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-<script>new window.VLibras.Widget("https://vlibras.gov.br/app");</script>
-<script src="script.js"></script>
-<script src="demos.js"></script>
-</body>
+    <!-- VLibras: botão flutuante oficial do governo federal -->
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+    <script src="script.js"></script>
+    <script src="demos.js"></script>
+  </body>
 </html>

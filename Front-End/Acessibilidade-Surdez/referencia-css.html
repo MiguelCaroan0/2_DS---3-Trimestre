@@ -1,135 +1,278 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Guia de referência de CSS — Dev Acess</title>
-<meta name="description" content="Referência de CSS em português simples, com exemplos comentados, vídeo em Libras, transcrição e glossário.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="referencia.css">
-</head>
-<body>
-<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-<header class="site-header">
-  <div class="container">
-    <a class="logo" href="index.html" aria-label="Dev Acess, página inicial">Dev<span>Acess</span></a>
-    <nav class="menu" aria-label="Principal">
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="index.html#trilhas">Trilhas</a></li>
-        <li><a href="referencia-html.html">Guia HTML</a></li>
-        <li><a href="referencia-css.html" aria-current="page">Guia CSS</a></li>
-        <li><a href="referencia-js.html">Guia JavaScript</a></li>
-        <li><a href="licao-html.html">Lição de exemplo</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-<main id="conteudo" tabindex="-1">
-  <div class="container conteudo">
-    <nav class="breadcrumb" aria-label="Você está aqui"><ol>
-      <li><a href="index.html">Início</a></li><li aria-current="page">Guia de referência de CSS</li></ol></nav>
-    <h1>Guia de referência de CSS</h1>
-    <p>CSS controla a aparência: cores, letras, espaços e layout. Veja os assuntos principais com exemplos que você enxerga funcionando.</p>
-    <p>Para ver qualquer texto desta página em Libras agora, ative o botão do <strong>VLibras</strong> e selecione o texto.</p>
-    <div class="ref-grid">
-      <nav class="topicos" aria-labelledby="topicos-t">
-        <h2 id="topicos-t">Tópicos</h2>
-        <ol><li><a href="#seletores">Seletores</a></li><li><a href="#box-model">Box model</a></li><li><a href="#cores">Cores e contraste</a></li><li><a href="#tipografia">Tipografia</a></li><li><a href="#layout">Layout e posição</a></li><li><a href="#flexbox">Flexbox</a></li><li><a href="#grid">Grid</a></li><li><a href="#responsividade">Responsividade</a></li><li><a href="#animacoes">Animações</a></li></ol>
-        <h2>Nesta página</h2>
-        <ul><li><a href="#libras">Vídeo em Libras</a></li><li><a href="#transcricao">Transcrição</a></li><li><a href="#glossario">Glossário</a></li><li><a href="#relacionadas">Lições relacionadas</a></li></ul>
-      </nav>
-      <div>
-<section class="topico" id="seletores" aria-labelledby="seletores-t">
-  <h2 id="seletores-t">Seletores</h2>
-  <p>O seletor escolhe <em>quem</em> vai receber o estilo: um tipo de tag, uma classe ou um elemento específico.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Seletores"><code>p { color: #16193b; }           /* todos os parágrafos */
-.destaque { background: #ffd23f; } /* quem tem class="destaque" */
-#titulo { font-size: 2rem; }    /* só o elemento id="titulo" */
-a:hover { text-decoration: underline; } /* quando o mouse está em cima */</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><p>Texto comum com <span class="d-destaque">um trecho destacado</span> pela classe.</p></div>
-</section>
-<section class="topico" id="box-model" aria-labelledby="box-model-t">
-  <h2 id="box-model-t">Box model</h2>
-  <p>Todo elemento é uma caixa com quatro camadas: conteúdo, <code>padding</code> (espaço interno), <code>border</code> (borda) e <code>margin</code> (espaço externo).</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Box model"><code>.caixa {
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Guia de referência de CSS — Dev Acess</title>
+    <meta
+      name="description"
+      content="Referência de CSS em português simples, com exemplos comentados, vídeo em Libras, transcrição e glossário."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="referencia.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header">
+      <div class="container">
+        <a class="logo" href="index.html" aria-label="Dev Acess, página inicial"
+          >Dev<span>Acess</span></a
+        >
+        <nav class="menu" aria-label="Principal">
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="referencia-html.html">Guia HTML</a></li>
+            <li>
+              <a href="referencia-css.html" aria-current="page">Guia CSS</a>
+            </li>
+            <li><a href="referencia-js.html">Guia JavaScript</a></li>
+          </ul>
+        </nav>
+        <button
+          type="button"
+          class="btn a11y-botao"
+          id="a11y-toggle"
+          aria-expanded="false"
+          aria-controls="a11y-painel"
+        >
+          Acessibilidade
+        </button>
+      </div>
+    </header>
+    <main id="conteudo" tabindex="-1">
+      <div class="container conteudo">
+        <nav class="breadcrumb" aria-label="Você está aqui">
+          <ol>
+            <li><a href="index.html">Início</a></li>
+            <li aria-current="page">Guia de referência de CSS</li>
+          </ol>
+        </nav>
+        <h1>Guia de referência de CSS</h1>
+        <p>
+          CSS controla a aparência: cores, letras, espaços e layout. Veja os
+          assuntos principais com exemplos que você enxerga funcionando.
+        </p>
+        <p>
+          Para ver qualquer texto desta página em Libras agora, ative o botão do
+          <strong>VLibras</strong> e selecione o texto.
+        </p>
+        <div class="ref-grid">
+          <nav class="topicos" aria-labelledby="topicos-t">
+            <h2 id="topicos-t">Tópicos</h2>
+            <ol>
+              <li><a href="#seletores">Seletores</a></li>
+              <li><a href="#box-model">Box model</a></li>
+              <li><a href="#cores">Cores e contraste</a></li>
+              <li><a href="#tipografia">Tipografia</a></li>
+              <li><a href="#layout">Layout e posição</a></li>
+              <li><a href="#flexbox">Flexbox</a></li>
+              <li><a href="#grid">Grid</a></li>
+              <li><a href="#responsividade">Responsividade</a></li>
+              <li><a href="#animacoes">Animações</a></li>
+            </ol>
+            <h2>Nesta página</h2>
+            <ul>
+              <li><a href="#libras">Vídeo em Libras</a></li>
+              <li><a href="#transcricao">Transcrição</a></li>
+              <li><a href="#glossario">Glossário</a></li>
+              <li><a href="#relacionadas">Lições relacionadas</a></li>
+            </ul>
+          </nav>
+          <div>
+            <section
+              class="topico"
+              id="seletores"
+              aria-labelledby="seletores-t"
+            >
+              <h2 id="seletores-t">Seletores</h2>
+              <p>
+                O seletor escolhe <em>quem</em> vai receber o estilo: um tipo de
+                tag, uma classe ou um elemento específico.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre tabindex="0" aria-label="Código: Seletores"></pre>
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <p>
+                  Texto comum com
+                  <span class="d-destaque">um trecho destacado</span> pela
+                  classe.
+                </p>
+              </div>
+            </section>
+            <section
+              class="topico"
+              id="box-model"
+              aria-labelledby="box-model-t"
+            >
+              <h2 id="box-model-t">Box model</h2>
+              <p>
+                Todo elemento é uma caixa com quatro camadas: conteúdo,
+                <code>padding</code> (espaço interno),
+                <code>border</code> (borda) e <code>margin</code> (espaço
+                externo).
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre tabindex="0" aria-label="Código: Box model"><code>.caixa {
   padding: 1rem;            /* espaço dentro da borda */
   border: 6px solid #2b3bd6; /* borda */
   margin: 1rem;             /* espaço fora da borda */
 }</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><div class="d-box">Conteúdo da caixa</div></div>
-</section>
-<section class="topico" id="cores" aria-labelledby="cores-t">
-  <h2 id="cores-t">Cores e contraste</h2>
-  <p>Defina cor do texto e do fundo. O contraste entre as duas precisa ser alto: mínimo de 4,5 para 1 em texto comum (WCAG).</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Cores e contraste"><code>.bom  { color: #16193b; background: #ffd23f; } /* contraste alto */
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <div class="d-box">Conteúdo da caixa</div>
+              </div>
+            </section>
+            <section class="topico" id="cores" aria-labelledby="cores-t">
+              <h2 id="cores-t">Cores e contraste</h2>
+              <p>
+                Defina cor do texto e do fundo. O contraste entre as duas
+                precisa ser alto: mínimo de 4,5 para 1 em texto comum (WCAG).
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre
+                tabindex="0"
+                aria-label="Código: Cores e contraste"
+              ><code>.bom  { color: #16193b; background: #ffd23f; } /* contraste alto */
 .ruim { color: #aaaaaa; background: #ffffff; } /* difícil de ler */</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><p><span style="color:#16193b;background:#ffd23f;padding:.3rem .6rem">Bom contraste</span> <span style="color:#aaa;background:#fff;padding:.3rem .6rem;border:1px solid #ccc">Mau contraste</span></p></div>
-</section>
-<section class="topico" id="tipografia" aria-labelledby="tipografia-t">
-  <h2 id="tipografia-t">Tipografia</h2>
-  <p>Texto legível usa fonte clara, tamanho em <code>rem</code>, espaço entre linhas e linhas curtas.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Tipografia"><code>body {
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <p>
+                  <span
+                    style="
+                      color: #16193b;
+                      background: #ffd23f;
+                      padding: 0.3rem 0.6rem;
+                    "
+                    >Bom contraste</span
+                  >
+                  <span
+                    style="
+                      color: #aaa;
+                      background: #fff;
+                      padding: 0.3rem 0.6rem;
+                      border: 1px solid #ccc;
+                    "
+                    >Mau contraste</span
+                  >
+                </p>
+              </div>
+            </section>
+            <section
+              class="topico"
+              id="tipografia"
+              aria-labelledby="tipografia-t"
+            >
+              <h2 id="tipografia-t">Tipografia</h2>
+              <p>
+                Texto legível usa fonte clara, tamanho em <code>rem</code>,
+                espaço entre linhas e linhas curtas.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre tabindex="0" aria-label="Código: Tipografia"><code>body {
   font-family: "Atkinson Hyperlegible", sans-serif; /* fonte fácil de ler */
   font-size: 1.125rem;  /* 18px */
   line-height: 1.7;     /* espaço entre linhas */
 }
 p { max-width: 70ch; }  /* linhas não muito longas */</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><p style="font-size:1.125rem;line-height:1.7;max-width:70ch;margin:0">Linhas curtas e bom espaço entre elas deixam a leitura mais confortável.</p></div>
-</section>
-<section class="topico" id="layout" aria-labelledby="layout-t">
-  <h2 id="layout-t">Layout e posição</h2>
-  <p><code>display</code> define como o elemento se comporta. <code>position</code> controla onde ele fica na tela.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Layout e posição"><code>.cabecalho {
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <p
+                  style="
+                    font-size: 1.125rem;
+                    line-height: 1.7;
+                    max-width: 70ch;
+                    margin: 0;
+                  "
+                >
+                  Linhas curtas e bom espaço entre elas deixam a leitura mais
+                  confortável.
+                </p>
+              </div>
+            </section>
+            <section class="topico" id="layout" aria-labelledby="layout-t">
+              <h2 id="layout-t">Layout e posição</h2>
+              <p>
+                <code>display</code> define como o elemento se comporta.
+                <code>position</code> controla onde ele fica na tela.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre
+                tabindex="0"
+                aria-label="Código: Layout e posição"
+              ><code>.cabecalho {
   position: sticky; /* gruda no topo ao rolar */
   top: 0;
 }
 .menu { display: flex; } /* itens lado a lado */
 .escondido { display: none; } /* some da tela */</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><p>O cabeçalho do Dev Acess usa <code>position: sticky</code>: ele continua visível no topo enquanto você rola a página.</p></div>
-</section>
-<section class="topico" id="flexbox" aria-labelledby="flexbox-t">
-  <h2 id="flexbox-t">Flexbox</h2>
-  <p>Flexbox organiza itens em uma linha ou coluna e divide o espaço entre eles.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Flexbox"><code>.linha {
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <p>
+                  O cabeçalho do Dev Acess usa <code>position: sticky</code>:
+                  ele continua visível no topo enquanto você rola a página.
+                </p>
+              </div>
+            </section>
+            <section class="topico" id="flexbox" aria-labelledby="flexbox-t">
+              <h2 id="flexbox-t">Flexbox</h2>
+              <p>
+                Flexbox organiza itens em uma linha ou coluna e divide o espaço
+                entre eles.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre tabindex="0" aria-label="Código: Flexbox"><code>.linha {
   display: flex;  /* ativa o flexbox */
   gap: .5rem;     /* espaço entre itens */
   justify-content: space-between; /* distribui na linha */
 }</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><div class="d-flex"><span>1</span><span>2</span><span>3</span></div></div>
-</section>
-<section class="topico" id="grid" aria-labelledby="grid-t">
-  <h2 id="grid-t">Grid</h2>
-  <p>Grid organiza itens em linhas <em>e</em> colunas ao mesmo tempo.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Grid"><code>.grade {
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <div class="d-flex">
+                  <span>1</span><span>2</span><span>3</span>
+                </div>
+              </div>
+            </section>
+            <section class="topico" id="grid" aria-labelledby="grid-t">
+              <h2 id="grid-t">Grid</h2>
+              <p>
+                Grid organiza itens em linhas <em>e</em> colunas ao mesmo tempo.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre tabindex="0" aria-label="Código: Grid"><code>.grade {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
   gap: .5rem;
 }</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><div class="d-grid"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div></div>
-</section>
-<section class="topico" id="responsividade" aria-labelledby="responsividade-t">
-  <h2 id="responsividade-t">Responsividade</h2>
-  <p>Uma página responsiva se adapta a celular, tablet e computador. Use medidas flexíveis e <code>@media</code>.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Responsividade"><code>/* Colunas que se ajustam sozinhas à largura da tela */
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <div class="d-grid">
+                  <span>1</span><span>2</span><span>3</span><span>4</span
+                  ><span>5</span><span>6</span>
+                </div>
+              </div>
+            </section>
+            <section
+              class="topico"
+              id="responsividade"
+              aria-labelledby="responsividade-t"
+            >
+              <h2 id="responsividade-t">Responsividade</h2>
+              <p>
+                Uma página responsiva se adapta a celular, tablet e computador.
+                Use medidas flexíveis e <code>@media</code>.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre
+                tabindex="0"
+                aria-label="Código: Responsividade"
+              ><code>/* Colunas que se ajustam sozinhas à largura da tela */
 .grade { display: grid;
   grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr)); }
 
@@ -137,89 +280,219 @@ p { max-width: 70ch; }  /* linhas não muito longas */</code></pre>
 @media (min-width: 60rem) {
   .lateral { display: block; }
 }</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><div class="d-auto"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span></div><p>Diminua a janela: os blocos mudam de linha.</p></div>
-</section>
-<section class="topico" id="animacoes" aria-labelledby="animacoes-t">
-  <h2 id="animacoes-t">Animações</h2>
-  <p>Animações chamam atenção, mas podem incomodar. Respeite quem pediu menos movimento com <code>prefers-reduced-motion</code>.</p>
-  <h3>Exemplo de código</h3>
-  <pre tabindex="0" aria-label="Código: Animações"><code>@keyframes mover { to { transform: translateX(10rem); } }
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <div class="d-auto">
+                  <span>A</span><span>B</span><span>C</span><span>D</span
+                  ><span>E</span>
+                </div>
+                <p>Diminua a janela: os blocos mudam de linha.</p>
+              </div>
+            </section>
+            <section
+              class="topico"
+              id="animacoes"
+              aria-labelledby="animacoes-t"
+            >
+              <h2 id="animacoes-t">Animações</h2>
+              <p>
+                Animações chamam atenção, mas podem incomodar. Respeite quem
+                pediu menos movimento com <code>prefers-reduced-motion</code>.
+              </p>
+              <h3>Exemplo de código</h3>
+              <pre
+                tabindex="0"
+                aria-label="Código: Animações"
+              ><code>@keyframes mover { to { transform: translateX(10rem); } }
 .bolinha { animation: mover 2s ease-in-out infinite alternate; }
 
 @media (prefers-reduced-motion: reduce) {
   .bolinha { animation: none; } /* sem movimento */
 }</code></pre>
-  <h3>Resultado esperado</h3>
-  <div class="exemplo"><div class="d-mover" aria-hidden="true"></div><p>O quadrado se move. Com “Reduzir animações” ativado, ele fica parado.</p></div>
-</section>
-<section class="topico" id="libras" aria-labelledby="libras-t">
-  <h2 id="libras-t">Vídeo em Libras</h2>
-  <!-- Troque o bloco abaixo pelo vídeo real (legenda em português no arquivo .vtt):
+              <h3>Resultado esperado</h3>
+              <div class="exemplo">
+                <div class="d-mover" aria-hidden="true"></div>
+                <p>
+                  O quadrado se move. Com “Reduzir animações” ativado, ele fica
+                  parado.
+                </p>
+              </div>
+            </section>
+            <section class="topico" id="libras" aria-labelledby="libras-t">
+              <h2 id="libras-t">Vídeo em Libras</h2>
+              <!-- Troque o bloco abaixo pelo vídeo real (legenda em português no arquivo .vtt):
   <video controls preload="metadata" poster="videos/css-poster.jpg">
     <source src="videos/css-libras.mp4" type="video/mp4">
     <track kind="captions" src="videos/css.vtt" srclang="pt-BR" label="Português" default>
   </video> -->
-  <div class="video-libras" role="group" aria-label="Espaço reservado para o vídeo em Libras do guia de CSS">
-    <p><strong>Vídeo em Libras</strong><br>O intérprete aparecerá aqui, com legendas em português.</p>
-  </div>
-</section>
-<section class="topico" id="transcricao" aria-labelledby="transcricao-t">
-  <h2 id="transcricao-t">Transcrição descritiva</h2>
-  <details><summary>Abrir transcrição</summary><p>Seletores: O seletor escolhe quem vai receber o estilo: um tipo de tag, uma classe ou um elemento específico. Box model: Todo elemento é uma caixa com quatro camadas: conteúdo, padding (espaço interno), border (borda) e margin (espaço externo). Cores e contraste: Defina cor do texto e do fundo. O contraste entre as duas precisa ser alto: mínimo de 4,5 para 1 em texto comum (WCAG). Tipografia: Texto legível usa fonte clara, tamanho em rem, espaço entre linhas e linhas curtas. Layout e posição: display define como o elemento se comporta. position controla onde ele fica na tela. Flexbox: Flexbox organiza itens em uma linha ou coluna e divide o espaço entre eles. Grid: Grid organiza itens em linhas e colunas ao mesmo tempo. Responsividade: Uma página responsiva se adapta a celular, tablet e computador. Use medidas flexíveis e @media. Animações: Animações chamam atenção, mas podem incomodar. Respeite quem pediu menos movimento com prefers-reduced-motion.</p></details>
-</section>
-<section class="topico" id="glossario" aria-labelledby="glossario-t">
-  <h2 id="glossario-t">Glossário</h2>
-  <dl class="glossario"><dt>Seletor</dt><dd>Parte do CSS que escolhe quais elementos recebem o estilo.</dd>
-<dt>Propriedade e valor</dt><dd>Em <code>color: red</code>, <code>color</code> é a propriedade e <code>red</code> é o valor.</dd>
-<dt>Box model</dt><dd>Modelo de caixa: conteúdo, padding, borda e margin.</dd>
-<dt>rem</dt><dd>Unidade de medida baseada no tamanho da fonte da página. 1rem costuma ser 16px.</dd>
-<dt>Pseudo-classe</dt><dd>Estado do elemento, como <code>:hover</code> (mouse em cima) e <code>:focus</code> (teclado).</dd>
-<dt>Media query</dt><dd>Regra <code>@media</code> que só vale em certas condições, como largura da tela.</dd>
-<dt>Contraste</dt><dd>Diferença de brilho entre texto e fundo. Quanto maior, mais fácil de ler.</dd>
-<dt>Viewport</dt><dd>Área visível da página no navegador.</dd></dl>
-</section>
-<section class="topico" id="relacionadas" aria-labelledby="relacionadas-t">
-  <h2 id="relacionadas-t">Lições relacionadas</h2>
-  <ul><li>Cores e contraste em CSS <span class="tag-breve">(em breve)</span></li>
-<li>Layout com flexbox <span class="tag-breve">(em breve)</span></li>
-<li>Layout com grid <span class="tag-breve">(em breve)</span></li>
-<li><a href="licao-html.html">Títulos e parágrafos em HTML (base para o CSS)</a></li>
-<li><a href="referencia-html.html">Guia de HTML</a></li>
-<li><a href="referencia-js.html">Guia de JavaScript</a></li></ul>
-</section>
+              <div
+                class="video-libras"
+                role="group"
+                aria-label="Espaço reservado para o vídeo em Libras do guia de CSS"
+              >
+                <p>
+                  <strong>Vídeo em Libras</strong><br />O intérprete aparecerá
+                  aqui, com legendas em português.
+                </p>
+              </div>
+            </section>
+            <section
+              class="topico"
+              id="transcricao"
+              aria-labelledby="transcricao-t"
+            >
+              <h2 id="transcricao-t">Transcrição descritiva</h2>
+              <details>
+                <summary>Abrir transcrição</summary>
+                <p>
+                  Seletores: O seletor escolhe quem vai receber o estilo: um
+                  tipo de tag, uma classe ou um elemento específico. Box model:
+                  Todo elemento é uma caixa com quatro camadas: conteúdo,
+                  padding (espaço interno), border (borda) e margin (espaço
+                  externo). Cores e contraste: Defina cor do texto e do fundo. O
+                  contraste entre as duas precisa ser alto: mínimo de 4,5 para 1
+                  em texto comum (WCAG). Tipografia: Texto legível usa fonte
+                  clara, tamanho em rem, espaço entre linhas e linhas curtas.
+                  Layout e posição: display define como o elemento se comporta.
+                  position controla onde ele fica na tela. Flexbox: Flexbox
+                  organiza itens em uma linha ou coluna e divide o espaço entre
+                  eles. Grid: Grid organiza itens em linhas e colunas ao mesmo
+                  tempo. Responsividade: Uma página responsiva se adapta a
+                  celular, tablet e computador. Use medidas flexíveis e @media.
+                  Animações: Animações chamam atenção, mas podem incomodar.
+                  Respeite quem pediu menos movimento com
+                  prefers-reduced-motion.
+                </p>
+              </details>
+            </section>
+            <section
+              class="topico"
+              id="glossario"
+              aria-labelledby="glossario-t"
+            >
+              <h2 id="glossario-t">Glossário</h2>
+              <dl class="glossario">
+                <dt>Seletor</dt>
+                <dd>
+                  Parte do CSS que escolhe quais elementos recebem o estilo.
+                </dd>
+                <dt>Propriedade e valor</dt>
+                <dd>
+                  Em <code>color: red</code>, <code>color</code> é a propriedade
+                  e <code>red</code> é o valor.
+                </dd>
+                <dt>Box model</dt>
+                <dd>Modelo de caixa: conteúdo, padding, borda e margin.</dd>
+                <dt>rem</dt>
+                <dd>
+                  Unidade de medida baseada no tamanho da fonte da página. 1rem
+                  costuma ser 16px.
+                </dd>
+                <dt>Pseudo-classe</dt>
+                <dd>
+                  Estado do elemento, como <code>:hover</code> (mouse em cima) e
+                  <code>:focus</code> (teclado).
+                </dd>
+                <dt>Media query</dt>
+                <dd>
+                  Regra <code>@media</code> que só vale em certas condições,
+                  como largura da tela.
+                </dd>
+                <dt>Contraste</dt>
+                <dd>
+                  Diferença de brilho entre texto e fundo. Quanto maior, mais
+                  fácil de ler.
+                </dd>
+                <dt>Viewport</dt>
+                <dd>Área visível da página no navegador.</dd>
+              </dl>
+            </section>
+            <section
+              class="topico"
+              id="relacionadas"
+              aria-labelledby="relacionadas-t"
+            >
+              <h2 id="relacionadas-t">Lições relacionadas</h2>
+              <ul>
+                <li>
+                  Cores e contraste em CSS
+                  <span class="tag-breve">(em breve)</span>
+                </li>
+                <li>
+                  Layout com flexbox <span class="tag-breve">(em breve)</span>
+                </li>
+                <li>
+                  Layout com grid <span class="tag-breve">(em breve)</span>
+                </li>
+                <li>
+                  <a href="licao-html.html"
+                    >Títulos e parágrafos em HTML (base para o CSS)</a
+                  >
+                </li>
+                <li><a href="referencia-html.html">Guia de HTML</a></li>
+                <li><a href="referencia-js.html">Guia de JavaScript</a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
       </div>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          <strong>Dev Acess</strong> — aprender a programar com recursos
+          visuais, legendas e Libras.
+        </p>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#trilhas">Trilhas</a></li>
+          <li><a href="#conteudo">Voltar ao topo</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Painel de acessibilidade -->
+    <div
+      class="a11y-painel"
+      id="a11y-painel"
+      role="region"
+      aria-label="Opções de acessibilidade"
+      hidden
+    >
+      <h2>Ajustes de leitura</h2>
+      <button type="button" class="btn btn-sec" id="a11y-mais">
+        Aumentar texto (A+)
+      </button>
+      <button type="button" class="btn btn-sec" id="a11y-menos">
+        Diminuir texto (A−)
+      </button>
+      <button
+        type="button"
+        class="btn btn-sec"
+        id="a11y-contraste"
+        aria-pressed="false"
+      >
+        Alto contraste
+      </button>
+      <button
+        type="button"
+        class="btn btn-sec"
+        id="a11y-movimento"
+        aria-pressed="false"
+      >
+        Reduzir animações
+      </button>
     </div>
-  </div>
-</main>
-<footer class="site-footer">
-  <div class="container">
-    <p><strong>Dev Acess</strong> — aprender a programar com recursos visuais, legendas e Libras.</p>
-    <ul>
-      <li><a href="index.html">Início</a></li>
-      <li><a href="index.html#trilhas">Trilhas</a></li>
-      <li><a href="#conteudo">Voltar ao topo</a></li>
-    </ul>
-  </div>
-</footer>
 
-<!-- Botão e painel de acessibilidade -->
-<button type="button" class="btn a11y-botao" id="a11y-toggle" aria-expanded="false" aria-controls="a11y-painel">Acessibilidade</button>
-<div class="a11y-painel" id="a11y-painel" role="region" aria-label="Opções de acessibilidade" hidden>
-  <h2>Ajustes de leitura</h2>
-  <button type="button" class="btn btn-sec" id="a11y-mais">Aumentar texto (A+)</button>
-  <button type="button" class="btn btn-sec" id="a11y-menos">Diminuir texto (A−)</button>
-  <button type="button" class="btn btn-sec" id="a11y-contraste" aria-pressed="false">Alto contraste</button>
-  <button type="button" class="btn btn-sec" id="a11y-movimento" aria-pressed="false">Reduzir animações</button>
-</div>
-
-<!-- VLibras: botão flutuante oficial do governo federal -->
-<div vw class="enabled">
-  <div vw-access-button class="active"></div>
-  <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
-</div>
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-<script>new window.VLibras.Widget("https://vlibras.gov.br/app");</script>
-<script src="script.js"></script>
-</body>
+    <!-- VLibras: botão flutuante oficial do governo federal -->
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+    <script src="script.js"></script>
+  </body>
 </html>
