@@ -407,7 +407,6 @@
   .site-footer {
     background: var(--suave);
     border-top: 4px solid var(--tinta);
-    padding-block: 2rem;
     margin-top: 3rem;
   }
   
