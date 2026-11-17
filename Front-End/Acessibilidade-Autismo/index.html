@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add("js")</script>
 <script src="script.js" defer></script>
 </head>
 
@@ -37,11 +38,11 @@
         empresas
       </h1>
       <p>A Apeperia é uma start-up com um jeito inovador de criar e montar aplicativos mobile e web. Funciona assim: você contrata um de nossos três matadores planos e nós criamos, desenvolvemos e mantemos seu app multiplataforma de forma acelerada e, o melhor: se o app não parar o trânsito, devolvemos seu dinheiro direto para o seu bolso!</p>
-      <a class="cta" href="#planos" id="planos">CLIQUE AQUI!</a>
+      <a class="cta" href="#planos">CLIQUE AQUI!</a>
     </div>
   </section>
 
-  <section class="features" id="destaques">
+  <section class="features" id="diferenciais">
     <ul>
       <li>
         <svg class="hex" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><path d="M28 3l22 12.5v25L28 53 6 40.500v-25z"/><text x="28" y="36" text-anchor="middle" font-family="Roboto Slab,serif" font-size="22" font-weight="700" fill="currentColor" stroke="none">$</text></svg>
@@ -73,6 +74,101 @@
       <p class="caption">Desenvolvemos aplicativos para todas as plataformas.</p>
     </div>
   </section>
+
+  <div class="on-light">
+    <!-- Planos -->
+    <section class="plans" id="planos">
+      <div class="wrap">
+        <h2 class="section-title">Planos</h2>
+        <div class="plans-grid">
+          <article class="plan reveal">
+            <h3>START</h3>
+            <div class="price"><sup>R$</sup><b data-count="500">500</b></div>
+            <p>5 manutenções mensais<br>e mais!</p>
+            <button class="btn-outline" type="button" data-download>Baixar lista</button>
+          </article>
+          <article class="plan featured reveal">
+            <h3>ULTRA</h3>
+            <div class="price"><sup>R$</sup><b data-count="1500">1500</b></div>
+            <p>20 manutenções mensais<br>e mais!</p>
+            <button class="btn-outline" type="button" data-download>Baixar lista</button>
+          </article>
+          <article class="plan reveal">
+            <h3>MEGA</h3>
+            <div class="price"><sup>R$</sup><b data-count="1000">1000</b></div>
+            <p>10 manutenções mensais<br>e mais!</p>
+            <button class="btn-outline" type="button" data-download>Baixar lista</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section class="blog" id="blog">
+      <div class="wrap reveal">
+        <h2 class="section-title">Blog</h2>
+        <div class="slider" id="slider">
+          <article class="post active">
+            <svg class="post-art" viewBox="0 0 250 70" role="img" aria-label="Teclado e celular"><use href="#art"/></svg>
+            <h3>Conheça os 10 aplicativos mais badalados do momento</h3>
+            <p>Listamos nesta semana alguns aplicativos que estão se destacando no mundo inteiro e merecem a sua atenção. Agora, mostramos os 10 apps mais badalados do momento e por que eles estão ganhando destaque. <a href="#blog">Clique aqui!</a></p>
+          </article>
+          <article class="post">
+            <svg class="post-art hue1" viewBox="0 0 250 70" role="img" aria-label="Teclado e celular"><use href="#art"/></svg>
+            <h3>Cinco dicas para proteger os dados do seu app</h3>
+            <p>Segurança não é detalhe: veja boas práticas simples de autenticação, criptografia e atualização que reduzem riscos e aumentam a confiança dos seus usuários. <a href="#blog">Clique aqui!</a></p>
+          </article>
+          <article class="post">
+            <svg class="post-art hue2" viewBox="0 0 250 70" role="img" aria-label="Teclado e celular"><use href="#art"/></svg>
+            <h3>Web ou mobile? Descubra o melhor para o seu negócio</h3>
+            <p>Cada formato tem vantagens próprias. Comparamos custo, alcance e manutenção para ajudar você a escolher o caminho certo para o seu projeto. <a href="#blog">Clique aqui!</a></p>
+          </article>
+        </div>
+        <div class="dots" id="dots" role="tablist" aria-label="Posts do blog"></div>
+      </div>
+    </section>
+
+    <!-- Destaques -->
+    <section class="highlights" id="destaques">
+      <div class="wrap reveal">
+        <h2 class="section-title">Destaques</h2>
+        <div class="hl-cols">
+          <article>
+            <h3>Conheça as primeiras etapas da criação de um logo</h3>
+            <p>Quem vê um logotipo pronto, estampado em uma peça de publicidade, não imagina o minucioso processo pelo qual ele passa até chegar ao resultado final. Esse elemento aparentemente simples é um dos trabalhos mais complexos para um designer.</p>
+            <p>A responsabilidade é grande, uma vez que as empresas contratantes depositam toda a expectativa sobre o seu negócio. Isso porque um logotipo deve transmitir com criatividade tudo o que a empresa representa. Ele deve ser capaz de traduzir a essência da marca para os consumidores, ajudando-os a identificar e consumir produtos e serviços da empresa. Uma responsabilidade grande, não é mesmo?</p>
+            <p class="ul">Para ajudar nesse processo, resolvemos fazer um passo a passo com tudo o que é importante para você mandar bem na criação do logo. <a class="hl-link" href="#destaques">Ficou curioso? Então confira!</a></p>
+          </article>
+          <article>
+            <h3>Vai trabalhar com fotografia? Então conheça essas dicas</h3>
+            <p>Em todos os momentos da sua vida, é sempre bom ver o mundo como um aprendiz e estar aberto às novidades. Procure basear o seu trabalho em algum profissional que você admira. Peça as opiniões dele, mande suas dúvidas e troque ideias. Mesmo que ele seja de outro país, o Google Tradutor pode ajudar você nessa tarefa, certo? Aproveite as facilidades da tecnologia para conhecer o trabalho de outros profissionais da fotografia.</p>
+            <p>A humildade é fundamental em qualquer profissão. Por isso, reconheça as suas habilidades, mas tenha sempre em mente o que pode e deve ser melhorado. Faça cursos e procure sempre se aprimorar na câmera. Além disso, procure fotografar nos diversos modos que ela apresentar, dando preferência ao manual, para conhecer melhor as suas habilidades. No celular, busque conhecer os modos que ele apresenta e veja qual o melhor para o seu estilo. <a class="hl-link" href="#destaques">Saiba mais clicando aqui!</a></p>
+          </article>
+        </div>
+        <form class="hl-form" id="hlForm" novalidate>
+          <label><input type="checkbox" id="hlCheck"> Receber destaques por email</label>
+          <button class="btn-solid" type="submit">Vai</button>
+        </form>
+        <div class="hl-msg" id="hlMsg" role="status"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Ilustração reutilizada nos posts -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="artBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9dadd"/><stop offset="1" stop-color="#8d9096"/></linearGradient>
+      <pattern id="keys" width="15" height="12" patternUnits="userSpaceOnUse"><rect x="1" y="1" width="13" height="10" rx="2" fill="#f4f4f5"/></pattern>
+    </defs>
+    <symbol id="art" viewBox="0 0 250 70">
+      <rect width="250" height="70" fill="url(#artBg)"/>
+      <path d="M0 14h140l-18 56H0z" fill="url(#keys)" opacity=".95"/>
+      <path d="M118 62c40-20 70-6 132-22" stroke="#fff" stroke-width="1.500" fill="none" opacity=".8"/>
+      <rect x="150" y="8" width="52" height="62" rx="5" fill="#2a2d33" transform="rotate(-8 176 40)"/>
+      <rect x="154" y="13" width="44" height="52" rx="2" fill="#3ecf8e" transform="rotate(-8 176 40)"/>
+      <circle cx="176" cy="38" r="9" fill="none" stroke="#fff" stroke-width="2"/>
+    </symbol>
+  </svg>
 </main>
 
 <aside class="news" id="news" aria-label="Newsletter">
@@ -85,7 +181,6 @@
   </form>
   <div class="ok" id="newsMsg" role="status"></div>
 </aside>
-<!-- vm nbora -->
 
 </body>
 </html>
