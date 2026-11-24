@@ -1,0 +1,236 @@
+/* ==========================================================================
+       VARIÁVEIS DE TEMA E ESTILOS BASE DE ACESSIBILIDADE
+       ========================================================================== */
+       :root {
+        --bg-primary: #ffffff;
+        --bg-secondary: #eef6f4;
+        --bg-card: #ffffff;
+        --text-primary: #10231f;
+        --text-secondary: #2f4a44;
+        --accent-primary: #0f766e;
+        --accent-hover: #115e59;
+        --accent-text: #ffffff;
+        --border-color: #b6cfca;
+        --focus-ring: #d97706;
+        --font-family-base: 'Lexend', system-ui, -apple-system, sans-serif;
+        --line-height-base: 1.65;
+        --letter-spacing-base: 0.01em;
+        --word-spacing-base: 0.05em;
+      }
+
+      html, body{
+        max-width: 100%;
+        overflow-x: clip;
+      }
+  
+      /* Tema: Alto Contraste Escuro (Preto, Branco e Amarelo) */
+      html.theme-high-contrast-dark {
+        --bg-primary: #000000;
+        --bg-secondary: #121212;
+        --bg-card: #000000;
+        --text-primary: #ffffff;
+        --text-secondary: #f8fafc;
+        --accent-primary: #ffff00;
+        --accent-hover: #fde047;
+        --accent-text: #000000;
+        --border-color: #ffffff;
+        --focus-ring: #00ffff;
+      }
+  
+      /* Tema: Alto Contraste Amarelo sobre Preto */
+      html.theme-yellow-black {
+        --bg-primary: #000000;
+        --bg-secondary: #0a0a0a;
+        --bg-card: #000000;
+        --text-primary: #ffff00;
+        --text-secondary: #fef08a;
+        --accent-primary: #ffff00;
+        --accent-hover: #ffffff;
+        --accent-text: #000000;
+        --border-color: #ffff00;
+        --focus-ring: #ffffff;
+      }
+  
+      /* Tema: Sépia / Conforto Visual (Redução de fotofobia) */
+      html.theme-sepia {
+        --bg-primary: #f4ecd8;
+        --bg-secondary: #e9dec4;
+        --bg-card: #fbf6ea;
+        --text-primary: #2c2216;
+        --text-secondary: #4a3b28;
+        --accent-primary: #7c2d12;
+        --accent-hover: #9a3412;
+        --accent-text: #fbf6ea;
+        --border-color: #bfa988;
+        --focus-ring: #b45309;
+      }
+  
+      /* Tema: Escala de Cinza */
+      html.theme-grayscale {
+        filter: grayscale(100%);
+      }
+  
+      /* Filtros SVG de Daltonismo */
+      html.filter-protanopia {
+        filter: url('#protanopia-filter');
+      }
+      html.filter-deuteranopia {
+        filter: url('#deuteranopia-filter');
+      }
+      html.filter-tritanopia {
+        filter: url('#tritanopia-filter');
+      }
+  
+      /* Tipografia Especial para Baixa Visão / Dislexia */
+      html.font-hyperlegible {
+        --font-family-base: 'Atkinson Hyperlegible', Verdana, sans-serif;
+      }
+  
+      /* Espaçamento Ampliado */
+      html.extra-spacing {
+        --line-height-base: 2.0;
+        --letter-spacing-base: 0.08em;
+        --word-spacing-base: 0.2em;
+      }
+  
+      /* Destaque de Links e Botões */
+      html.highlight-links a,
+      html.highlight-links button {
+        text-decoration: underline !important;
+        text-decoration-thickness: 3px !important;
+        text-underline-offset: 4px !important;
+        outline: 2px solid var(--accent-primary) !important;
+        outline-offset: 2px !important;
+      }
+  
+      /* Cursor Ampliado de Alto Contraste */
+      html.large-cursor,
+      html.large-cursor * {
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 32 32'%3E%3Cpath d='M4 2 L26 16 L15 19 L21 29 L16 31 L10 21 L4 27 Z' fill='%23ffff00' stroke='%23000000' stroke-width='2.5'/%3E%3C/svg%3E") 4 2, auto !important;
+      }
+  
+      /* Aplicação Global das Variáveis */
+      body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: var(--font-family-base);
+        line-height: var(--line-height-base);
+        letter-spacing: var(--letter-spacing-base);
+        word-spacing: var(--word-spacing-base);
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+  
+      .surface-secondary {
+        background-color: var(--bg-secondary);
+        border-color: var(--border-color);
+      }
+  
+      .surface-card {
+        background-color: var(--bg-card);
+        border: 2px solid var(--border-color);
+      }
+  
+      .text-muted-accessible {
+        color: var(--text-secondary);
+      }
+  
+      .btn-primary-accessible {
+        background-color: var(--accent-primary);
+        color: var(--accent-text);
+        border: 2px solid var(--accent-primary);
+        font-weight: 700;
+      }
+  
+      .btn-primary-accessible:hover {
+        background-color: var(--accent-hover);
+        border-color: var(--accent-hover);
+      }
+  
+      .btn-outline-accessible {
+        background-color: var(--bg-card);
+        color: var(--text-primary);
+        border: 2px solid var(--border-color);
+        font-weight: 600;
+      }
+  
+      .btn-outline-accessible:hover,
+      .btn-outline-accessible[aria-pressed="true"] {
+        background-color: var(--accent-primary);
+        color: var(--accent-text);
+        border-color: var(--accent-primary);
+      }
+  
+      /* Foco de Alta Visibilidade para Teclado */
+      *:focus-visible {
+        outline: 4px solid var(--focus-ring) !important;
+        outline-offset: 4px !important;
+        box-shadow: 0 0 0 6px var(--bg-primary) !important;
+      }
+  
+      /* Skip Links (Visíveis ao focar via Tab) */
+      .skip-link {
+        position: absolute;
+        top: -120px;
+        left: 16px;
+        z-index: 9999;
+        background-color: var(--accent-primary);
+        color: var(--accent-text);
+        padding: 14px 24px;
+        font-weight: 800;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        border: 3px solid var(--focus-ring);
+        transition: top 0.2s ease;
+      }
+  
+      .skip-link:focus {
+        top: 16px;
+      }
+  
+      /* Régua / Guia de Leitura Horizontal */
+      #reading-guide {
+        position: fixed;
+        left: 0;
+        width: 100vw;
+        height: 54px;
+        pointer-events: none;
+        z-index: 9990;
+        border-top: 4px solid #ffff00;
+        border-bottom: 4px solid #ffff00;
+        background-color: rgba(255, 255, 0, 0.14);
+        box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.35);
+        display: none;
+        transform: translateY(-50%);
+      }
+  
+      html.reading-guide-active #reading-guide {
+        display: block;
+      }
+  
+      /* Destaque do elemento sendo lido pelo sintetizador de voz */
+      .tts-speaking-highlight {
+        outline: 4px dashed var(--focus-ring) !important;
+        outline-offset: 4px !important;
+        background-color: rgba(250, 204, 21, 0.18) !important;
+      }
+    
+  /* ==========================================================================
+     APARÊNCIA: camadas visuais adicionais (formas, sombras, gradientes)
+     ========================================================================== */
+  .surface-card{border-radius:1.25rem;box-shadow:0 6px 18px -8px rgba(16,35,31,.25);
+    transition:transform .2s ease,box-shadow .2s ease}
+  article.surface-card:hover{transform:translateY(-4px);box-shadow:0 14px 28px -10px rgba(16,35,31,.35)}
+  .btn-primary-accessible,.btn-outline-accessible{border-radius:999px;transition:all .15s ease}
+  .btn-outline-accessible{box-shadow:0 2px 0 var(--border-color)}
+  #barra-acessibilidade{border-bottom-width:6px;border-bottom-color:var(--accent-primary);
+    backdrop-filter:blur(6px)}
+  #conteudo-principal>section:first-child{
+    background:linear-gradient(135deg,var(--bg-secondary) 0%,var(--bg-card) 100%);
+    border-left:12px solid var(--accent-primary);border-radius:2rem}
+  #conteudo-principal h2{position:relative;padding-bottom:.6rem}
+  #conteudo-principal h2::after{content:"";position:absolute;left:0;bottom:0;width:72px;height:6px;
+    border-radius:6px;background:var(--accent-primary)}
+  kbd{box-shadow:0 3px 0 var(--border-color);font-family:'Atkinson Hyperlegible',monospace}
+  header{background:var(--bg-card)}
+  footer{border-top-color:var(--accent-primary)!important}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}

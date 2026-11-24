@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="text-[18px]">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visão Clara — Portal de Acessibilidade Digital e Tecnologia Assistiva</title>
+ 
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+ 
+  <!-- Google Fonts: Atkinson Hyperlegible (baixa visão) e Lexend (leitura fluida) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Lexend:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased selection:bg-amber-300 selection:text-black">
+
+  <!-- Filtros SVG Ocultos para Simulação/Correção de Daltonismo -->
+  <svg aria-hidden="true" class="hidden" width="0" height="0">
+    <defs>
+      <!-- Protanopia (Cegueira ao vermelho) -->
+      <filter id="protanopia-filter">
+        <feColorMatrix type="matrix" values="
+          0.567, 0.433, 0,     0, 0
+          0.558, 0.442, 0,     0, 0
+          0,     0.242, 0.758, 0, 0
+          0,     0,     0,     1, 0"/>
+      </filter>
+      <!-- Deuteranopia (Cegueira ao verde) -->
+      <filter id="deuteranopia-filter">
+        <feColorMatrix type="matrix" values="
+          0.625, 0.375, 0,   0, 0
+          0.7,   0.3,   0,   0, 0
+          0,     0.3,   0.7, 0, 0
+          0,     0,     0,   1, 0"/>
+      </filter>
+      <!-- Tritanopia (Cegueira ao azul) -->
+      <filter id="tritanopia-filter">
+        <feColorMatrix type="matrix" values="
+          0.95, 0.05,  0,     0, 0
+          0,    0.433, 0.567, 0, 0
+          0,    0.475, 0.525, 0, 0
+          0,    0,     0,     1, 0"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Régua / Guia de Leitura Horizontal -->
+  <div id="reading-guide" aria-hidden="true"></div>
+
+  <!-- Região Viva ARIA para Anúncios a Leitores de Tela -->
+  <div id="aria-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Links de Navegação Rápida (Skip Links) -->
+  <nav aria-label="Links de salto rápido">
+    <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal (Alt + 1)</a>
+    <a href="#barra-acessibilidade" class="skip-link" style="left: 340px;">Pular para a barra de acessibilidade (Alt + 2)</a>
+  </nav>
+
+  <!-- ========================================================================
+       BARRA DE FERRAMENTAS DE ACESSIBILIDADE PERSISTENTE
+       ======================================================================== -->
+  <aside id="barra-acessibilidade" aria-label="Barra de Ferramentas de Acessibilidade" class="surface-secondary border-b-4 sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-3">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg btn-primary-accessible" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </span>
+          <div>
+            <span class="font-extrabold text-base block leading-tight">Painel de Acessibilidade</span>
+            <span class="text-xs text-muted-accessible">Personalize leitura, cores e voz</span>
+          </div>
+        </div>
+
+        <!-- Botão de Expandir/Recolher Painel Completo em Telas Menores ou Organização -->
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Controles Rápidos de Fonte -->
+          <div class="flex items-center gap-1.5 bg-black/5 p-1.5 rounded-xl border border-current/20" role="group" aria-label="Tamanho do texto">
+            <button type="button" id="btn-font-decrease" class="btn-outline-accessible px-3 py-2 rounded-lg text-sm min-h-[44px]" aria-label="Diminuir tamanho da fonte">
+              A- <span class="sr-only">Diminuir</span>
+            </button>
+            <span id="font-size-indicator" class="px-2 font-bold text-sm min-w-[54px] text-center" aria-live="polite">100%</span>
+            <button type="button" id="btn-font-increase" class="btn-outline-accessible px-3 py-2 rounded-lg text-sm min-h-[44px]" aria-label="Aumentar tamanho da fonte">
+              A+ <span class="sr-only">Aumentar</span>
+            </button>
+            <button type="button" id="btn-font-reset" class="btn-outline-accessible px-3 py-2 rounded-lg text-sm min-h-[44px]" aria-label="Restaurar tamanho padrão da fonte">
+              100%
+            </button>
+          </div>
+
+          <!-- Atalho Rápido Alto Contraste -->
+          <button type="button" id="btn-quick-contrast" aria-pressed="false" class="btn-outline-accessible px-4 py-2 rounded-xl text-sm flex items-center gap-2 min-h-[44px]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m0-18a9 9 0 100 18V3z" />
+            </svg>
+            <span>Alto Contraste</span>
+          </button>
+
+          <!-- Botão Leitor de Voz Rápido -->
+          <button type="button" id="btn-tts-toggle" aria-pressed="false" class="btn-primary-accessible px-4 py-2 rounded-xl text-sm flex items-center gap-2 min-h-[44px]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            </svg>
+            <span id="tts-btn-label">Ouvir Página</span>
+          </button>
+
+          <!-- Botão Expandir Todas as Ferramentas -->
+          <button type="button" id="btn-toggle-toolbar" aria-expanded="false" aria-controls="toolbar-advanced-panel" class="btn-outline-accessible px-4 py-2 rounded-xl text-sm flex items-center gap-2 min-h-[44px]">
+            <span>Mais Opções</span>
+            <svg id="toolbar-chevron" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Painel Avançado Expansível de Acessibilidade -->
+      <div id="toolbar-advanced-panel" class="hidden mt-4 pt-4 border-t-2 border-current/15 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+       
+        <!-- Grupo 1: Modos de Cor e Contraste -->
+        <div class="surface-card p-3 rounded-xl">
+          <h2 class="text-sm font-extrabold uppercase tracking-wider mb-2">1. Contraste e Cores</h2>
+          <div class="grid grid-cols-2 gap-2" role="group" aria-label="Temas de contraste">
+            <button type="button" data-theme="default" aria-pressed="true" class="theme-btn btn-outline-accessible px-3 py-2 rounded-lg text-xs text-left min-h-[44px]">
+              Padrão Claro
+            </button>
+            <button type="button" data-theme="high-contrast-dark" aria-pressed="false" class="theme-btn btn-outline-accessible px-3 py-2 rounded-lg text-xs text-left min-h-[44px]">
+              Escuro Contraste
+            </button>
+            <button type="button" data-theme="yellow-black" aria-pressed="false" class="theme-btn btn-outline-accessible px-3 py-2 rounded-lg text-xs text-left min-h-[44px]">
+              Amarelo / Preto
+            </button>
+            <button type="button" data-theme="sepia" aria-pressed="false" class="theme-btn btn-outline-accessible px-3 py-2 rounded-lg text-xs text-left min-h-[44px]">
+              Sépia (Fotofobia)
+            </button>
+            <button type="button" id="btn-grayscale" aria-pressed="false" class="btn-outline-accessible px-3 py-2 rounded-lg text-xs text-left col-span-2 min-h-[44px]">
+              Escala de Cinza (Monocromático)
+            </button>
+          </div>
+        </div>
+
+        <!-- Grupo 2: Filtros para Daltonismo -->
+        <div class="surface-card p-3 rounded-xl">
+          <h2 class="text-sm font-extrabold uppercase tracking-wider mb-2">2. Filtros de Daltonismo</h2>
+          <div class="grid grid-cols-2 gap-2" role="group" aria-label="Filtros de daltonismo">
+            <button type="button" data-daltonism="none" aria-pressed="true" class="daltonism-btn btn-outline-accessible px-3 py-2 rounded-lg text-xs text-left min-h-[44px]">
+              Sem Filtro
+            </button>
+            <button type="button" data-daltonism="protanopia" aria-pressed="false" class="daltonism-btn btn-outline-accessible px-3 py-2 rounded-lg text-xs text-left min-h-[44px]">
+              Protanopia
+            </button>
+            <button type="button" data-daltonism="deuteranopia" aria-pressed="false" class="daltonism-btn btn-outline-accessible px-3 py-2 rounded-lg text-xs text-left min-h-[44px]">
+              Deuteranopia
+            </button>
+            <button type="button" data-daltonism="tritanopia" aria-pressed="false" class="daltonism-btn btn-outline-accessible px-3 py-2 rounded-lg text-xs text-left min-h-[44px]">
+              Tritanopia
+            </button>
+          </div>
+        </div>
+
+        <!-- Grupo 3: Tipografia e Auxílio Visual -->
+        <div class="surface-card p-3 rounded-xl">
+          <h2 class="text-sm font-extrabold uppercase tracking-wider mb-2">3. Leitura e Cursor</h2>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" id="btn-hyperlegible" aria-pressed="false" class="btn-outline-accessible px-3 py-2 rounded-lg text-xs text-left min-h-[44px]">
+              Fonte Baixa Visão
+            </button>
+            <button type="button" id="btn-spacing" aria-pressed="false" class="btn-outline-accessible px-3 py-2 rounded-lg text-xs text-left min-h-[44px]">
+              Espaçamento +
+            </button>
+            <button type="button" id="btn-highlight-links" aria-pressed="false" class="btn-outline-accessible px-3 py-2 rounded-lg text-xs text-left min-h-[44px]">
+              Destacar Links
+            </button>
+            <button type="button" id="btn-reading-guide" aria-pressed="false" class="btn-outline-accessible px-3 py-2 rounded-lg text-xs text-left min-h-[44px]">
+              Régua de Leitura
+            </button>
+            <button type="button" id="btn-large-cursor" aria-pressed="false" class="btn-outline-accessible px-3 py-2 rounded-lg text-xs text-left col-span-2 min-h-[44px]">
+              Cursor Ampliado de Alto Contraste
+            </button>
+          </div>
+        </div>
+
+        <!-- Grupo 4: Síntese de Voz e Reset -->
+        <div class="surface-card p-3 rounded-xl flex flex-col justify-between">
+          <div>
+            <h2 class="text-sm font-extrabold uppercase tracking-wider mb-2">4. Leitor de Voz (PT-BR)</h2>
+            <div class="flex flex-col gap-2">
+              <button type="button" id="btn-hover-speak" aria-pressed="false" class="btn-outline-accessible px-3 py-2 rounded-lg text-xs text-left min-h-[44px]">
+                Ler ao Focar / Passar Mouse
+              </button>
+              <div class="flex items-center gap-1" role="group" aria-label="Velocidade da fala">
+                <span class="text-xs font-bold mr-1">Velocidade:</span>
+                <button type="button" data-rate="0.75" aria-pressed="false" class="rate-btn btn-outline-accessible px-2 py-1.5 rounded text-xs flex-1 min-h-[38px]">Lenta</button>
+                <button type="button" data-rate="1" aria-pressed="true" class="rate-btn btn-outline-accessible px-2 py-1.5 rounded text-xs flex-1 min-h-[38px]">Normal</button>
+                <button type="button" data-rate="1.35" aria-pressed="false" class="rate-btn btn-outline-accessible px-2 py-1.5 rounded text-xs flex-1 min-h-[38px]">Rápida</button>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" id="btn-reset-all" class="mt-3 w-full bg-red-700 hover:bg-red-800 text-white font-bold py-2.5 px-3 rounded-lg text-xs flex items-center justify-center gap-2 min-h-[44px]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <span>Resetar Todas as Preferências</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       CABEÇALHO PRINCIPAL E NAVEGAÇÃO
+       ======================================================================== -->
+  <header class="border-b-2 border-current/15 py-6">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <div class="w-14 h-14 rounded-2xl btn-primary-accessible flex items-center justify-center shrink-0" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </div>
+        <div>
+          <a href="#" class="text-2xl md:text-3xl font-extrabold tracking-tight block">Visão Clara</a>
+          <p class="text-sm md:text-base text-muted-accessible">Portal de Acessibilidade Digital e Tecnologia Assistiva</p>
+        </div>
+      </div>
+
+      <nav aria-label="Navegação Principal do Portal">
+        <ul class="flex flex-wrap gap-3">
+          <li><a href="#recursos-assistivos" class="btn-outline-accessible px-4 py-3 rounded-xl inline-block text-base">Recursos Assistivos</a></li>
+          <li><a href="#simulador-contraste" class="btn-outline-accessible px-4 py-3 rounded-xl inline-block text-base">Simulador WCAG</a></li>
+          <li><a href="#contato-acessivel" class="btn-outline-accessible px-4 py-3 rounded-xl inline-block text-base">Feedback</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       CONTEÚDO PRINCIPAL
+       ======================================================================== -->
+  <main id="conteudo-principal" tabindex="-1" class="max-w-6xl mx-auto px-4 py-10 space-y-16">
+
+    <!-- SEÇÃO HERO -->
+    <section aria-labelledby="hero-heading" class="surface-secondary p-8 md:p-12 rounded-3xl border-2">
+      <div class="max-w-4xl space-y-6">
+        <span class="inline-block px-4 py-1.5 rounded-full text-sm font-extrabold uppercase tracking-wider btn-primary-accessible">
+          Conformidade WCAG 2.2 Nível AAA
+        </span>
+        <h1 id="hero-heading" class="text-3xl md:text-5xl font-extrabold leading-tight">
+          A Web projetada para ser vista, ouvida e navegada por todas as pessoas.
+        </h1>
+        <p class="text-lg md:text-xl text-muted-accessible leading-relaxed">
+          O <strong>Visão Clara</strong> é um portal educativo e interativo criado especialmente para pessoas com baixa sensibilidade visual, baixa visão, daltonismo, fotofobia ou cegueira. Experimente os controles na barra superior para adaptar cores, tipografia, leitura em voz alta e navegação por teclado em tempo real.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-2">
+          <a href="#recursos-assistivos" class="btn-primary-accessible px-6 py-4 rounded-2xl text-lg inline-flex items-center gap-3">
+            <span>Explorar Tecnologias Assistivas</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+          <button type="button" id="btn-hero-listen" class="btn-outline-accessible px-6 py-4 rounded-2xl text-lg inline-flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Ouvir Apresentação</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 1: FERRAMENTAS E RECURSOS PARA BAIXA VISÃO -->
+    <section id="recursos-assistivos" aria-labelledby="recursos-heading" class="space-y-8">
+      <div class="space-y-3">
+        <h2 id="recursos-heading" class="text-2xl md:text-4xl font-extrabold">
+          Ferramentas e Recursos para Baixa Visão
+        </h2>
+        <p class="text-lg text-muted-accessible max-w-3xl">
+          Conheça as principais tecnologias assistivas e diretrizes de design que garantem autonomia digital para pessoas com deficiência visual.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Card 1 -->
+        <article class="surface-card p-6 md:p-8 rounded-2xl space-y-4 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl btn-primary-accessible flex items-center justify-center shrink-0" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                </svg>
+              </div>
+              <h3 class="text-xl md:text-2xl font-bold">Ampliadores de Tela e Zoom Fluido</h3>
+            </div>
+            <p class="text-muted-accessible">
+              Softwares como <strong>ZoomText</strong>, <strong>Lupa do Windows</strong> e o <strong>Zoom do macOS</strong> ampliam áreas específicas da tela em até 1600%. Sites acessíveis devem suportar zoom de 200% no navegador sem perda de conteúdo ou necessidade de rolagem horizontal.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-current/15">
+            <button type="button" class="speak-section-btn btn-outline-accessible px-4 py-2.5 rounded-xl text-sm inline-flex items-center gap-2">
+              <span aria-hidden="true">🔊</span>
+              <span>Ouvir este card</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="surface-card p-6 md:p-8 rounded-2xl space-y-4 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl btn-primary-accessible flex items-center justify-center shrink-0" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                </svg>
+              </div>
+              <h3 class="text-xl md:text-2xl font-bold">Leitores de Tela (NVDA, JAWS e VoiceOver)</h3>
+            </div>
+            <p class="text-muted-accessible">
+              Leitores de tela convertem elementos visuais em síntese de voz ou saída em Braille. Para funcionarem perfeitamente, exigem HTML semântico rigoroso, hierarquia lógica de cabeçalhos (H1 a H6), textos alternativos descritivos e atributos ARIA bem estruturados.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-current/15">
+            <button type="button" class="speak-section-btn btn-outline-accessible px-4 py-2.5 rounded-xl text-sm inline-flex items-center gap-2">
+              <span aria-hidden="true">🔊</span>
+              <span>Ouvir este card</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="surface-card p-6 md:p-8 rounded-2xl space-y-4 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl btn-primary-accessible flex items-center justify-center shrink-0" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                </svg>
+              </div>
+              <h3 class="text-xl md:text-2xl font-bold">Contraste Cromático WCAG AAA</h3>
+            </div>
+            <p class="text-muted-accessible">
+              Pessoas com baixa sensibilidade ao contraste (como em casos de catarata, glaucoma ou retinopatia diabética) precisam de diferença acentuada entre texto e fundo. O nível AAA exige proporção mínima de <strong>7:1</strong> para textos normais e <strong>4.5:1</strong> para textos grandes.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-current/15">
+            <button type="button" class="speak-section-btn btn-outline-accessible px-4 py-2.5 rounded-xl text-sm inline-flex items-center gap-2">
+              <span aria-hidden="true">🔊</span>
+              <span>Ouvir este card</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="surface-card p-6 md:p-8 rounded-2xl space-y-4 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl btn-primary-accessible flex items-center justify-center shrink-0" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <h3 class="text-xl md:text-2xl font-bold">Tipografia Hiperlegível e Espaçamento</h3>
+            </div>
+            <p class="text-muted-accessible">
+              Fontes como a <strong>Atkinson Hyperlegible</strong> diferenciam claramente caracteres semelhantes (como "I" maiúsculo, "l" minúsculo e o número "1"). Combinadas com entrelinhas amplas e réguas de leitura, reduzem drasticamente a fadiga ocular.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-current/15">
+            <button type="button" class="speak-section-btn btn-outline-accessible px-4 py-2.5 rounded-xl text-sm inline-flex items-center gap-2">
+              <span aria-hidden="true">🔊</span>
+              <span>Ouvir este card</span>
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 2: SIMULADOR INTERATIVO DE CONTRASTE WCAG -->
+    <section id="simulador-contraste" aria-labelledby="simulador-heading" class="surface-secondary p-6 md:p-10 rounded-3xl border-2 space-y-8">
+      <div class="space-y-3">
+        <h2 id="simulador-heading" class="text-2xl md:text-4xl font-extrabold">
+          Simulador de Contraste WCAG em Tempo Real
+        </h2>
+        <p class="text-lg text-muted-accessible max-w-3xl">
+          Teste combinações de cores de texto e fundo para verificar se atendem aos critérios internacionais de legibilidade para pessoas com baixa visão.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Controles do Simulador -->
+        <div class="lg:col-span-5 surface-card p-6 rounded-2xl space-y-6">
+          <div class="space-y-2">
+            <label for="input-fg-color" class="block font-bold text-base">
+              Cor do Texto (Primeiro Plano):
+            </label>
+            <div class="flex items-center gap-3">
+              <input type="color" id="input-fg-color" value="#ffff00" class="w-16 h-12 rounded-lg border-2 border-current cursor-pointer">
+              <input type="text" id="input-fg-hex" value="#FFFF00" maxlength="7" aria-label="Código hexadecimal da cor do texto" class="surface-secondary px-4 py-2.5 rounded-xl border-2 font-mono uppercase w-full">
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label for="input-bg-color" class="block font-bold text-base">
+              Cor do Fundo (Segundo Plano):
+            </label>
+            <div class="flex items-center gap-3">
+              <input type="color" id="input-bg-color" value="#000000" class="w-16 h-12 rounded-lg border-2 border-current cursor-pointer">
+              <input type="text" id="input-bg-hex" value="#000000" maxlength="7" aria-label="Código hexadecimal da cor de fundo" class="surface-secondary px-4 py-2.5 rounded-xl border-2 font-mono uppercase w-full">
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 pt-2">
+            <button type="button" id="btn-swap-colors" class="btn-outline-accessible px-4 py-3 rounded-xl text-sm flex items-center gap-2">
+              <span aria-hidden="true">⇄</span>
+              <span>Inverter Cores</span>
+            </button>
+            <button type="button" data-preset-fg="#0F172A" data-preset-bg="#FFFFFF" class="preset-contrast-btn btn-outline-accessible px-3 py-3 rounded-xl text-sm">
+              Azul Escuro / Branco
+            </button>
+            <button type="button" data-preset-fg="#777777" data-preset-bg="#EEEEEE" class="preset-contrast-btn btn-outline-accessible px-3 py-3 rounded-xl text-sm">
+              Baixo Contraste (Exemplo Ruim)
+            </button>
+          </div>
+        </div>
+
+        <!-- Resultado Visual e Métricas WCAG -->
+        <div class="lg:col-span-7 space-y-6">
+          <div id="contrast-preview-box" class="p-8 rounded-2xl border-4 border-current transition-colors" style="background-color: #000000; color: #ffff00;">
+            <p class="text-sm font-bold uppercase tracking-wider mb-2">Pré-visualização de Leitura</p>
+            <h3 class="text-2xl md:text-3xl font-extrabold mb-3">
+              Exemplo de Título com Alto Contraste
+            </h3>
+            <p class="text-lg leading-relaxed">
+              Este parágrafo demonstra como uma pessoa com baixa sensibilidade visual enxerga a combinação escolhida. Um bom contraste evita esforço visual e garante leitura confortável.
+            </p>
+          </div>
+
+          <div class="surface-card p-6 rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-4 items-center" aria-live="polite">
+            <div>
+              <span class="text-sm text-muted-accessible block">Taxa de Contraste:</span>
+              <strong id="contrast-ratio-value" class="text-3xl font-extrabold">19.56 : 1</strong>
+            </div>
+            <div>
+              <span class="text-sm text-muted-accessible block">Texto Normal (WCAG):</span>
+              <span id="wcag-normal-badge" class="inline-block mt-1 px-3 py-1 rounded-lg font-extrabold text-sm bg-emerald-700 text-white">
+                APROVADO AAA (≥ 7:1)
+              </span>
+            </div>
+            <div>
+              <span class="text-sm text-muted-accessible block">Texto Grande (≥ 24px):</span>
+              <span id="wcag-large-badge" class="inline-block mt-1 px-3 py-1 rounded-lg font-extrabold text-sm bg-emerald-700 text-white">
+                APROVADO AAA (≥ 4.5:1)
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 3: GUIA PRÁTICO DE ATALHOS DE TECLADO -->
+    <section id="atalhos-teclado" aria-labelledby="atalhos-heading" class="space-y-6">
+      <div class="space-y-3">
+        <h2 id="atalhos-heading" class="text-2xl md:text-4xl font-extrabold">
+          Guia de Atalhos de Teclado do Portal
+        </h2>
+        <p class="text-lg text-muted-accessible max-w-3xl">
+          Navegue por todo o site sem precisar usar o mouse. Utilize as teclas abaixo para acionar recursos instantaneamente:
+        </p>
+      </div>
+
+      <div class="surface-card rounded-2xl overflow-hidden">
+        <table class="w-full text-left border-collapse">
+          <caption class="sr-only">Lista de atalhos de teclado disponíveis no portal Visão Clara</caption>
+          <thead class="surface-secondary border-b-2">
+            <tr>
+              <th scope="col" class="p-4 md:p-5 font-extrabold text-base md:text-lg">Combinação de Teclas</th>
+              <th scope="col" class="p-4 md:p-5 font-extrabold text-base md:text-lg">Ação Executada</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y-2 divide-current/15">
+            <tr>
+              <td class="p-4 md:p-5 font-mono font-bold"><kbd class="px-3 py-1.5 rounded-lg surface-secondary border-2">Alt</kbd> + <kbd class="px-3 py-1.5 rounded-lg surface-secondary border-2">1</kbd></td>
+              <td class="p-4 md:p-5">Ir diretamente para o Conteúdo Principal</td>
+            </tr>
+            <tr>
+              <td class="p-4 md:p-5 font-mono font-bold"><kbd class="px-3 py-1.5 rounded-lg surface-secondary border-2">Alt</kbd> + <kbd class="px-3 py-1.5 rounded-lg surface-secondary border-2">2</kbd></td>
+              <td class="p-4 md:p-5">Ir para a Barra de Acessibilidade</td>
+            </tr>
+            <tr>
+              <td class="p-4 md:p-5 font-mono font-bold"><kbd class="px-3 py-1.5 rounded-lg surface-secondary border-2">Alt</kbd> + <kbd class="px-3 py-1.5 rounded-lg surface-secondary border-2">C</kbd></td>
+              <td class="p-4 md:p-5">Alternar Modo de Alto Contraste Escuro</td>
+            </tr>
+            <tr>
+              <td class="p-4 md:p-5 font-mono font-bold"><kbd class="px-3 py-1.5 rounded-lg surface-secondary border-2">Alt</kbd> + <kbd class="px-3 py-1.5 rounded-lg surface-secondary border-2">L</kbd></td>
+              <td class="p-4 md:p-5">Iniciar ou Parar Leitura da Página em Voz Alta</td>
+            </tr>
+            <tr>
+              <td class="p-4 md:p-5 font-mono font-bold"><kbd class="px-3 py-1.5 rounded-lg surface-secondary border-2">Alt</kbd> + <kbd class="px-3 py-1.5 rounded-lg surface-secondary border-2">+</kbd> / <kbd class="px-3 py-1.5 rounded-lg surface-secondary border-2">-</kbd></td>
+              <td class="p-4 md:p-5">Aumentar ou Diminuir o Tamanho da Fonte</td>
+            </tr>
+            <tr>
+              <td class="p-4 md:p-5 font-mono font-bold"><kbd class="px-3 py-1.5 rounded-lg surface-secondary border-2">Alt</kbd> + <kbd class="px-3 py-1.5 rounded-lg surface-secondary border-2">R</kbd></td>
+              <td class="p-4 md:p-5">Ativar ou Desativar a Régua / Guia de Leitura</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 4: FORMULÁRIO DE CONTATO E FEEDBACK ACESSÍVEL -->
+    <section id="contato-acessivel" aria-labelledby="contato-heading" class="surface-secondary p-6 md:p-10 rounded-3xl border-2 space-y-6">
+      <div class="space-y-3 max-w-3xl">
+        <h2 id="contato-heading" class="text-2xl md:text-4xl font-extrabold">
+          Envie seu Feedback de Acessibilidade
+        </h2>
+        <p class="text-lg text-muted-accessible">
+          Encontrou alguma barreira de navegação ou tem sugestões de melhoria? Preencha o formulário abaixo. Todos os campos possuem validação acessível anunciada por voz e texto.
+        </p>
+      </div>
+
+      <form id="accessible-feedback-form" novalidate class="max-w-3xl space-y-6">
+        <!-- Campo Nome -->
+        <div class="space-y-2">
+          <label for="field-name" class="block font-bold text-lg">
+            Seu Nome Completo <span class="text-red-600 font-extrabold" aria-hidden="true">*</span>
+            <span class="sr-only">(obrigatório)</span>
+          </label>
+          <input type="text" id="field-name" name="name" required aria-required="true" aria-describedby="error-name" placeholder="Ex: Maria da Silva" class="surface-card w-full px-4 py-3.5 rounded-xl text-lg">
+          <p id="error-name" role="alert" class="text-red-600 font-bold text-base hidden"></p>
+        </div>
+
+        <!-- Campo E-mail -->
+        <div class="space-y-2">
+          <label for="field-email" class="block font-bold text-lg">
+            Seu E-mail para Resposta <span class="text-red-600 font-extrabold" aria-hidden="true">*</span>
+            <span class="sr-only">(obrigatório)</span>
+          </label>
+          <input type="email" id="field-email" name="email" required aria-required="true" aria-describedby="error-email" placeholder="Ex: maria@exemplo.com.br" class="surface-card w-full px-4 py-3.5 rounded-xl text-lg">
+          <p id="error-email" role="alert" class="text-red-600 font-bold text-base hidden"></p>
+        </div>
+
+        <!-- Campo Tecnologia Assistiva Utilizada -->
+        <div class="space-y-2">
+          <label for="field-assistive" class="block font-bold text-lg">
+            Qual recurso assistivo você utiliza? (Opcional)
+          </label>
+          <select id="field-assistive" name="assistive" class="surface-card w-full px-4 py-3.5 rounded-xl text-lg">
+            <option value="nenhum">Nenhum / Apenas zoom do navegador</option>
+            <option value="nvda">Leitor de Tela NVDA</option>
+            <option value="voiceover">Apple VoiceOver</option>
+            <option value="jaws">Leitor de Tela JAWS</option>
+            <option value="lupa">Lupa / Ampliador de Tela</option>
+            <option value="alto-contraste">Modo de Alto Contraste do Sistema</option>
+          </select>
+        </div>
+
+        <!-- Campo Mensagem -->
+        <div class="space-y-2">
+          <label for="field-message" class="block font-bold text-lg">
+            Sua Mensagem ou Sugestão <span class="text-red-600 font-extrabold" aria-hidden="true">*</span>
+            <span class="sr-only">(obrigatório)</span>
+          </label>
+          <textarea id="field-message" name="message" rows="4" required aria-required="true" aria-describedby="error-message" placeholder="Descreva sua experiência de navegação no portal..." class="surface-card w-full px-4 py-3.5 rounded-xl text-lg"></textarea>
+          <p id="error-message" role="alert" class="text-red-600 font-bold text-base hidden"></p>
+        </div>
+
+        <button type="submit" class="btn-primary-accessible px-8 py-4 rounded-2xl text-lg inline-flex items-center gap-3">
+          <span>Enviar Mensagem Acessível</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </button>
+
+        <!-- Caixa de Feedback de Envio (Substitui alert()) -->
+        <div id="form-status-box" role="status" aria-live="polite" class="hidden p-5 rounded-2xl border-2 font-bold text-lg"></div>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       RODAPÉ SEMÂNTICO
+       ======================================================================== -->
+  <footer class="border-t-4 border-current/20 py-10 mt-16 surface-secondary">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="space-y-2">
+        <p class="font-extrabold text-xl">Visão Clara — Inclusão Digital sem Barreiras</p>
+        <p class="text-muted-accessible text-base">
+          Desenvolvido seguindo as diretrizes WCAG 2.2 AAA e eMAG (Modelo de Acessibilidade em Governo Eletrônico).
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="#conteudo-principal" class="btn-outline-accessible px-4 py-3 rounded-xl text-base">
+          Voltar ao Topo
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
